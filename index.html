@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Guia prático, interativo e explicativo das diretrizes WCAG 2.1 Nível A.">
+    <title>Guia WCAG 2.1 Explicado - Nível A</title>
+    
+    <style>
+        /* --- DESIGN SYSTEM --- */
+        :root {
+            --primary: #4338ca;
+            --primary-light: #6366f1;
+            --accent: #f43f5e;
+            --success: #059669;
+            --danger: #dc2626;
+            --bg-body: #f8fafc;
+            --bg-card: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #475569;
+            --border-color: #e2e8f0;
+            --radius: 12px;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --header-gradient: linear-gradient(135deg, var(--primary), #312e81);
+        }
+
+        /* --- MODO ALTO CONTRASTE --- */
+        body.high-contrast {
+            --primary: #ffff00 !important;
+            --primary-light: #ffffff !important;
+            --accent: #00ffff !important;
+            --success: #00ff00 !important;
+            --danger: #ff5555 !important;
+            --bg-body: #000000 !important;
+            --bg-card: #000000 !important;
+            --text-main: #ffffff !important;
+            --text-muted: #ffff00 !important;
+            --border-color: #ffffff !important;
+            --shadow: none !important;
+            --header-gradient: none !important;
+        }
+
+        /* Ajustes Visuais Alto Contraste */
+        body.high-contrast header,
+        body.high-contrast .guideline-card,
+        body.high-contrast .code-block,
+        body.high-contrast .live-preview,
+        body.high-contrast footer {
+            border: 2px solid #fff !important;
+            background: #000 !important;
+        }
+
+        body.high-contrast h2 span {
+            background: #000 !important;
+            border: 1px solid #ffff00;
+            color: #ffff00 !important;
+        }
+
+        /* --- RESET & BASE --- */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        html { font-size: 100%; } /* Base para REM */
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.6;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* Skip Link */
+        .skip-link {
+            position: absolute;
+            top: -999px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent);
+            color: white;
+            padding: 12px 24px;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 0 0 8px 8px;
+            z-index: 9999;
+            transition: top 0.2s;
+        }
+        .skip-link:focus { top: 0; outline: 3px solid #fff; }
+
+        /* --- HEADER --- */
+        header {
+            background: var(--header-gradient);
+            background-color: var(--primary);
+            color: white;
+            padding: 4rem 1.5rem;
+            text-align: center;
+            border-bottom-right-radius: 3rem;
+            border-bottom-left-radius: 3rem;
+            margin-bottom: 3rem;
+            box-shadow: var(--shadow);
+        }
+
+        header h1 { font-size: 2.5rem; margin-bottom: 0.5rem; letter-spacing: -0.5px; }
+        header p { opacity: 0.9; max-width: 700px; margin: 0 auto; font-size: 1.1rem; }
+
+        /* Toolbar */
+        .a11y-toolbar {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(8px);
+            display: inline-flex;
+            gap: 10px;
+            padding: 8px 16px;
+            border-radius: 100px;
+            margin-top: 2rem;
+            border: 1px solid rgba(255,255,255,0.2);
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        body.high-contrast .a11y-toolbar { background: #000; border: 2px solid #fff; }
+
+        .a11y-toolbar button {
+            background: white;
+            color: var(--primary);
+            border: 2px solid transparent;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        body.high-contrast .a11y-toolbar button {
+            background: #000 !important;
+            color: #ffff00 !important;
+            border: 2px solid #ffff00 !important;
+        }
+
+        .a11y-toolbar button:hover { transform: translateY(-2px); }
+
+        /* Foco Visível */
+        button:focus-visible, a:focus-visible, input:focus-visible {
+            outline: 3px solid var(--accent);
+            outline-offset: 4px;
+        }
+        body.high-contrast :focus-visible { outline: 3px solid #fff; }
+
+        /* --- CONTEÚDO --- */
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding-bottom: 4rem;
+        }
+
+        section { margin-bottom: 5rem; scroll-margin-top: 2rem; }
+
+        h2 {
+            font-size: 1.8rem;
+            color: var(--text-main);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        h2 span {
+            background: var(--primary-light);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: bold;
+            font-family: monospace;
+        }
+
+        /* Cards Layout */
+        .guideline-card {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            display: grid;
+            grid-template-columns: 1fr;
+        }
+
+        @media(min-width: 900px) {
+            .guideline-card { grid-template-columns: 50% 50%; }
+        }
+
+        /* Lado Esquerdo: Texto */
+        .card-content {
+            padding: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .wcag-tag {
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            font-weight: 800;
+            color: var(--text-muted);
+            letter-spacing: 1.5px;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .card-content h3 { color: var(--primary); margin-bottom: 15px; font-size: 1.5rem; }
+        
+        /* Ajuste no texto para ficar mais didático */
+        .card-content p { 
+            margin-bottom: 15px; 
+            color: var(--text-muted); 
+            font-size: 1.05rem; 
+            line-height: 1.7;
+        }
+        .card-content strong { color: var(--text-main); font-weight: 700; }
+
+        /* Lado Direito: Código & Preview */
+        .card-code {
+            background: #1e293b;
+            padding: 2.5rem;
+            color: #e2e8f0;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.95rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border-left: 1px solid #334155;
+        }
+        
+        body.high-contrast .card-code {
+            background: #000 !important;
+            border-left: 2px solid #fff;
+            border-top: 2px solid #fff;
+        }
+
+        .code-block {
+            background: rgba(0,0,0,0.3);
+            padding: 1rem;
+            border-radius: 8px;
+            border-left: 5px solid;
+            margin-bottom: 1rem;
+        }
+        
+        .correct { border-color: var(--success); }
+        .label.certo { color: #4ade80; font-weight: bold; display: block; margin-bottom: 5px; font-size: 0.8rem; text-transform: uppercase;}
+        
+        code strong {
+            background: rgba(255,255,255,0.15);
+            color: #fff;
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
+
+        /* Live Preview */
+        .live-preview {
+            background: #f1f5f9;
+            border: 2px dashed #94a3b8;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 1.5rem;
+            color: #334155;
+            font-family: 'Segoe UI', sans-serif;
+            position: relative;
+        }
+
+        body.high-contrast .live-preview {
+            background: #111;
+            border-color: #fff;
+            color: #fff;
+        }
+
+        .preview-title {
+            position: absolute;
+            top: -12px;
+            left: 1rem;
+            background: #e2e8f0;
+            color: #475569;
+            padding: 2px 10px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        body.high-contrast .preview-title { background: #fff; color: #000; }
+
+        /* Footer */
+        footer {
+            background: #1f2937;
+            color: white;
+            text-align: center;
+            padding: 4rem 1rem;
+            margin-top: auto;
+        }
+
+        /* Helper de Explicação Adicional */
+        .explanation-box {
+            background-color: rgba(67, 56, 202, 0.05); /* Tint of primary */
+            border-left: 4px solid var(--primary);
+            padding: 1rem;
+            margin-top: 1rem;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.95rem;
+        }
+        body.high-contrast .explanation-box {
+            background: #111;
+            border-color: #ffff00;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+
+    <a href="#main-content" class="skip-link">Pular para Conteúdo Principal</a>
+
+    <header role="banner">
+        <div style="max-width: 900px; margin: 0 auto;">
+            <h1>Guia Prático WCAG 2.1</h1>
+            <p>Entenda a teoria e veja a prática das diretrizes de <strong>Nível A</strong> para deficientes visuais.</p>
+            
+            <div class="a11y-toolbar" role="group" aria-label="Ferramentas de Acessibilidade">
+                <button onclick="toggleContrast()" id="btn-contrast" aria-pressed="false">Alto Contraste 🌗</button>
+                <button onclick="changeFontSize(1)" aria-label="Aumentar Fonte">A+</button>
+                <button onclick="changeFontSize(-1)" aria-label="Diminuir Fonte">A-</button>
+            </div>
+        </div>
+    </header>
+
+    <main id="main-content" class="container" role="main">
+
+        <!-- 1.1.1 CONTEÚDO NÃO TEXTUAL -->
+        <section id="guideline-111">
+            <h2><span>1.1.1</span> Conteúdo Não Textual</h2>
+            <div class="guideline-card">
+                <div class="card-content">
+                    <span class="wcag-tag">Princípio: Perceptível</span>
+                    <h3>O que o Leitor de Tela "vê"?</h3>
+                    <p>Para um computador, uma imagem é apenas um amontoado de pixels. Softwares de leitura (como NVDA ou VoiceOver) não conseguem interpretar o significado da imagem sozinhos.</p>
+                    <p>Sem o atributo <code>alt</code>, o leitor pode ler o nome do arquivo (ex: "IMG_5502.jpg"), o que é inútil para o usuário. O texto alternativo deve transmitir a <strong>mesma informação</strong> que a imagem passa visualmente.</p>
+                    <div class="explanation-box">
+                        <strong>Dica de Ouro:</strong> Se a imagem for puramente decorativa (enfeite), use <code>alt=""</code> (vazio). Isso diz ao leitor para ignorá-la completamente.
+                    </div>
+                </div>
+                <div class="card-code">
+                    <div class="code-block correct">
+                        <span class="label certo">✅ Código</span>
+                        &lt;img src="vendas.jpg" <strong>alt="Gráfico: Vendas subiram 20%"</strong>&gt;
+                    </div>
+                    
+                    <div class="live-preview">
+                        <span class="preview-title">Teste na Prática</span>
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21.21 15.89A10 10 0 1 1 8 2.83"></path>
+                                <path d="M22 12A10 10 0 0 0 12 2v10z"></path>
+                            </svg>
+                            <span style="font-size: 0.9rem;">
+                                Passe o mouse na imagem (simulada) para ver o "Alt":<br>
+                                <strong title="Gráfico: Vendas subiram 20%" style="border-bottom: 1px dotted #333; cursor: help;">[ Passe o Mouse Aqui ]</strong>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 1.3.1 TABELAS -->
+        <section id="guideline-131">
+            <h2><span>1.3.1</span> Informações e Relações</h2>
+            <div class="guideline-card">
+                <div class="card-content">
+                    <span class="wcag-tag">Princípio: Perceptível</span>
+                    <h3>Navegação em Matriz</h3>
+                    <p>Quem enxerga, "escaneia" uma tabela visualmente e entende que o valor "R$ 50" pertence à coluna "Preço". O usuário cego navega <strong>célula por célula</strong>, perdendo esse contexto visual.</p>
+                    <p>O atributo <code>scope="col"</code> cria uma ligação invisível. Quando o usuário chega na célula do valor, o leitor anuncia automaticamente o cabeçalho correspondente antes do dado.</p>
+                </div>
+                <div class="card-code">
+                    <div class="code-block correct">
+                        <span class="label certo">✅ Código</span>
+                        &lt;th <strong>scope="col"</strong>&gt;Preço&lt;/th&gt; ... &lt;td&gt;R$ 50&lt;/td&gt;
+                    </div>
+
+                    <div class="live-preview">
+                        <span class="preview-title">Teste na Prática</span>
+                        <table style="width:100%; border-collapse: collapse;">
+                            <thead>
+                                <tr>
+                                    <th scope="col" style="border:1px solid #ccc; background:#e2e8f0; padding:5px;">Produto</th>
+                                    <th scope="col" style="border:1px solid #ccc; background:#e2e8f0; padding:5px;">Preço</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td style="border:1px solid #ccc; padding:5px;">Mouse Gamer</td>
+                                    <td style="border:1px solid #ccc; padding:5px;">R$ 150</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p style="margin-top:10px; font-size: 0.8rem;">
+                            🔈 O leitor dirá: "Coluna Preço, R$ 150".
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2.1.1 TECLADO -->
+        <section id="guideline-211">
+            <h2><span>2.1.1</span> Teclado</h2>
+            <div class="guideline-card">
+                <div class="card-content">
+                    <span class="wcag-tag">Princípio: Operável</span>
+                    <h3>A Falácia do "Clique"</h3>
+                    <p>Nem todo mundo usa mouse. Pessoas cegas ou com deficiências motoras graves (que não conseguem segurar um mouse) usam a tecla <code>TAB</code> para navegar.</p>
+                    <p>Elementos como <code>&lt;div&gt;</code> ou <code>&lt;span&gt;</code> são invisíveis para o teclado. Se você fizer um botão com div, o usuário de teclado nunca conseguirá "chegar" nele para clicar. Use sempre elementos nativos como <code>&lt;button&gt;</code> ou <code>&lt;a&gt;</code>.</p>
+                </div>
+                <div class="card-code">
+                    <div class="code-block correct">
+                        <span class="label certo">✅ Código</span>
+                        &lt;button&gt;Clique Aqui&lt;/button&gt;
+                    </div>
+
+                    <div class="live-preview" style="text-align: center;">
+                        <span class="preview-title">Teste na Prática</span>
+                        <button id="btn-keyboard-test" onclick="testKeyboard()" style="padding: 10px 20px; cursor:pointer;">
+                            Use TAB e aperte ENTER
+                        </button>
+                        <p id="msg-keyboard" style="margin-top: 10px; font-weight: bold; color: var(--success); height: 1.5rem;"></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2.4.4 LINKS -->
+        <section id="guideline-244">
+            <h2><span>2.4.4</span> Propósito do Link</h2>
+            <div class="guideline-card">
+                <div class="card-content">
+                    <span class="wcag-tag">Princípio: Operável</span>
+                    <h3>A Lista de Links Fora de Contexto</h3>
+                    <p>Leitores de tela possuem um atalho que lista <strong>apenas os links</strong> da página para que o usuário encontre o que quer rapidamente.</p>
+                    <p>Se você usar "Clique Aqui" em todos os links, o usuário ouvirá uma lista repetitiva e inútil: "Clique aqui, Clique aqui, Clique aqui". Ele não saberá para onde cada um leva.</p>
+                </div>
+                <div class="card-code">
+                    <div class="code-block correct">
+                        <span class="label certo">✅ Código</span>
+                        &lt;a href="..."&gt;Baixar PDF do Contrato&lt;/a&gt;
+                    </div>
+
+                    <div class="live-preview">
+                        <span class="preview-title">Comparação</span>
+                        <ul style="list-style: none; padding: 0;">
+                            <li style="margin-bottom: 8px;">❌ <a href="#" style="color: var(--danger);">Clique aqui</a> (Para onde vou?)</li>
+                            <li>✅ <a href="#" style="color: var(--primary); font-weight: bold;">Ver Tabela de Preços</a> (Claro!)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3.3.2 LABELS -->
+        <section id="guideline-332">
+            <h2><span>3.3.2</span> Rótulos (Labels)</h2>
+            <div class="guideline-card">
+                <div class="card-content">
+                    <span class="wcag-tag">Princípio: Compreensível</span>
+                    <h3>A Conexão Programática</h3>
+                    <p>Visualmente, basta colocar um texto ao lado de um campo para sabermos o que preencher. Para o cego, essa relação visual não existe.</p>
+                    <p>O atributo <code>for</code> no rótulo conecta-se ao <code>id</code> do input. Quando o foco entra no campo, o leitor busca esse rótulo conectado e o lê. Sem isso, o usuário ouve apenas "Campo de edição em branco".</p>
+                    <div class="explanation-box">
+                        Isso também aumenta a área de clique: clicar na palavra "Nome" ativa o campo!
+                    </div>
+                </div>
+                <div class="card-code">
+                    <div class="code-block correct">
+                        <span class="label certo">✅ Código</span>
+                        &lt;label <strong>for="email"</strong>&gt;E-mail:&lt;/label&gt;<br>
+                        &lt;input <strong>id="email"</strong> type="text"&gt;
+                    </div>
+
+                    <div class="live-preview">
+                        <span class="preview-title">Teste na Prática</span>
+                        <!-- Label clicável -->
+                        <label for="input-teste" style="display: block; margin-bottom: 5px; cursor: pointer; color: var(--primary); font-weight: bold;">
+                            Clique neste texto "E-mail" ->
+                        </label>
+                        <input type="text" id="input-teste" placeholder="Foco virá para cá..." style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4.1.2 ARIA LABELS -->
+        <section id="guideline-412">
+            <h2><span>4.1.2</span> Nome, Função, Valor</h2>
+            <div class="guideline-card">
+                <div class="card-content">
+                    <span class="wcag-tag">Princípio: Robusto</span>
+                    <h3>Dando Nome ao Invisível</h3>
+                    <p>Ícones são ótimos para economizar espaço (uma lixeira, uma lupa), mas eles não têm texto. Um leitor de tela não consegue descrever um vetor SVG.</p>
+                    <p>O atributo <code>aria-label</code> serve para fornecer um <strong>rótulo invisível</strong> que só existe para a tecnologia assistiva. Ele substitui a falta de texto visual, garantindo que o usuário saiba que aquele botão serve para "Excluir" ou "Buscar".</p>
+                </div>
+                <div class="card-code">
+                    <div class="code-block correct">
+                        <span class="label certo">✅ Código</span>
+                        &lt;button <strong>aria-label="Excluir Item"</strong>&gt; 🗑️ &lt;/button&gt;
+                    </div>
+
+                    <div class="live-preview">
+                        <span class="preview-title">Teste na Prática</span>
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <button aria-label="Excluir Item" onclick="alert('Leitor leu: Excluir Item')" style="background: var(--danger); color: white; border: none; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer;">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                </svg>
+                            </button>
+                            <small style="font-size: 0.8rem">Este botão só tem ícone, mas é acessível.</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer role="contentinfo">
+        <p>&copy; 2025 Guia de Acessibilidade Web.</p>
+        <p style="font-size: 0.9rem; opacity: 0.7;">
+            Este site está em conformidade com WCAG 2.1 Nível A.<br>
+            Desenvolvido para ensinar inclusão na prática.
+        </p>
+    </footer>
+
+    <!-- LÓGICA DE INTERAÇÃO -->
+    <script>
+        // 1. Zoom (Corrigido para HTML root)
+        let currentSize = 100;
+        function changeFontSize(dir) {
+            if(dir === 1 && currentSize < 160) currentSize += 10;
+            if(dir === -1 && currentSize > 90) currentSize -= 10;
+            document.documentElement.style.fontSize = currentSize + "%";
+        }
+
+        // 2. Alto Contraste
+        function toggleContrast() {
+            const body = document.body;
+            const btn = document.getElementById('btn-contrast');
+            body.classList.toggle('high-contrast');
+            const isActive = body.classList.contains('high-contrast');
+            btn.setAttribute('aria-pressed', isActive);
+            btn.innerText = isActive ? "Desativar Alto Contraste" : "Alto Contraste 🌗";
+        }
+
+        // 3. Teste de Teclado
+        function testKeyboard() {
+            const btn = document.getElementById('btn-keyboard-test');
+            const msg = document.getElementById('msg-keyboard');
+            btn.innerText = "Sucesso! 🎉";
+            btn.style.backgroundColor = "var(--success)";
+            btn.style.color = "#fff";
+            msg.innerText = "O evento de clique funcionou!";
+            
+            setTimeout(() => {
+                btn.innerText = "Use TAB e aperte ENTER";
+                btn.style.backgroundColor = "";
+                btn.style.color = "";
+                msg.innerText = "";
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
+
