@@ -7,7 +7,7 @@
     <title>Guia WCAG 2.1 Explicado - Nível A</title>
     
     <style>
-        /* --- DESIGN SYSTEM --- */
+        /* Cores/design */
         :root {
             --primary: #4338ca;
             --primary-light: #6366f1;
@@ -24,7 +24,7 @@
             --header-gradient: linear-gradient(135deg, var(--primary), #312e81);
         }
 
-        /* --- MODO ALTO CONTRASTE --- */
+        /* Alto Contraste */
         body.high-contrast {
             --primary: #ffff00 !important;
             --primary-light: #ffffff !important;
@@ -40,7 +40,7 @@
             --header-gradient: none !important;
         }
 
-        /* Ajustes Visuais Alto Contraste */
+        /* Ajustes do Alto Contraste */
         body.high-contrast header,
         body.high-contrast .guideline-card,
         body.high-contrast .code-block,
@@ -86,7 +86,7 @@
         }
         .skip-link:focus { top: 0; outline: 3px solid #fff; }
 
-        /* --- HEADER --- */
+        /* header */
         header {
             background: var(--header-gradient);
             background-color: var(--primary);
@@ -144,7 +144,7 @@
         }
         body.high-contrast :focus-visible { outline: 3px solid #fff; }
 
-        /* --- CONTEÚDO --- */
+        /* Conteudo */
         .container {
             width: 90%;
             max-width: 1100px;
@@ -173,7 +173,7 @@
             font-family: monospace;
         }
 
-        /* Cards Layout */
+        /* Cards */
         .guideline-card {
             background: var(--bg-card);
             border-radius: var(--radius);
@@ -188,7 +188,7 @@
             .guideline-card { grid-template-columns: 50% 50%; }
         }
 
-        /* Lado Esquerdo: Texto */
+        /* Lado esquerdo texto */
         .card-content {
             padding: 2.5rem;
             display: flex;
@@ -208,7 +208,7 @@
 
         .card-content h3 { color: var(--primary); margin-bottom: 15px; font-size: 1.5rem; }
         
-        /* Ajuste no texto para ficar mais didático */
+        /* Ajuste no texto */
         .card-content p { 
             margin-bottom: 15px; 
             color: var(--text-muted); 
@@ -217,7 +217,7 @@
         }
         .card-content strong { color: var(--text-main); font-weight: 700; }
 
-        /* Lado Direito: Código & Preview */
+        /* Lado direito código */
         .card-code {
             background: #1e293b;
             padding: 2.5rem;
@@ -295,9 +295,9 @@
             margin-top: auto;
         }
 
-        /* Helper de Explicação Adicional */
+        /* Explicação adicional */
         .explanation-box {
-            background-color: rgba(67, 56, 202, 0.05); /* Tint of primary */
+            background-color: rgba(67, 56, 202, 0.05); 
             border-left: 4px solid var(--primary);
             padding: 1rem;
             margin-top: 1rem;
@@ -313,7 +313,7 @@
 </head>
 <body>
 
-    <a href="#main-content" class="skip-link">Pular para Conteúdo Principal</a>
+    <a href="#main-content" class="skip-link">Pular para conteúdo principal</a>
 
     <header role="banner">
         <div style="max-width: 900px; margin: 0 auto;">
@@ -332,7 +332,7 @@
 
         <!-- 1.1.1 CONTEÚDO NÃO TEXTUAL -->
         <section id="guideline-111">
-            <h2><span>1.1.1</span> Conteúdo Não Textual</h2>
+            <h2><span>Diretriz 1.1.1</span> Conteúdo Não Textual</h2>
             <div class="guideline-card">
                 <div class="card-content">
                     <span class="wcag-tag">Princípio: Perceptível</span>
@@ -358,6 +358,7 @@
                             </svg>
                             <span style="font-size: 0.9rem;">
                                 Passe o mouse na imagem (simulada) para ver o "Alt":<br>
+                                
                                 <strong title="Gráfico: Vendas subiram 20%" style="border-bottom: 1px dotted #333; cursor: help;">[ Passe o Mouse Aqui ]</strong>
                             </span>
                         </div>
@@ -368,7 +369,7 @@
 
         <!-- 1.3.1 TABELAS -->
         <section id="guideline-131">
-            <h2><span>1.3.1</span> Informações e Relações</h2>
+            <h2><span>Diretriz 1.3.1</span> Informações e Relações</h2>
             <div class="guideline-card">
                 <div class="card-content">
                     <span class="wcag-tag">Princípio: Perceptível</span>
@@ -387,8 +388,8 @@
                         <table style="width:100%; border-collapse: collapse;">
                             <thead>
                                 <tr>
-                                    <th scope="col" style="border:1px solid #ccc; background:#e2e8f0; padding:5px;">Produto</th>
-                                    <th scope="col" style="border:1px solid #ccc; background:#e2e8f0; padding:5px;">Preço</th>
+                                    <th scope="col" style="border:1px solid #ccc; padding:5px;">Produto</th>
+                                    <th scope="col" style="border:1px solid #ccc; padding:5px;">Preço</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -408,7 +409,7 @@
 
         <!-- 2.1.1 TECLADO -->
         <section id="guideline-211">
-            <h2><span>2.1.1</span> Teclado</h2>
+            <h2><span> Diretriz 2.1.1</span> Teclado</h2>
             <div class="guideline-card">
                 <div class="card-content">
                     <span class="wcag-tag">Princípio: Operável</span>
@@ -435,7 +436,7 @@
 
         <!-- 2.4.4 LINKS -->
         <section id="guideline-244">
-            <h2><span>2.4.4</span> Propósito do Link</h2>
+            <h2><span>Diretriz 2.4.4</span> Propósito do Link</h2>
             <div class="guideline-card">
                 <div class="card-content">
                     <span class="wcag-tag">Princípio: Operável</span>
@@ -462,7 +463,7 @@
 
         <!-- 3.3.2 LABELS -->
         <section id="guideline-332">
-            <h2><span>3.3.2</span> Rótulos (Labels)</h2>
+            <h2><span>Diretriz 3.3.2</span> Rótulos (Labels)</h2>
             <div class="guideline-card">
                 <div class="card-content">
                     <span class="wcag-tag">Princípio: Compreensível</span>
@@ -494,7 +495,7 @@
 
         <!-- 4.1.2 ARIA LABELS -->
         <section id="guideline-412">
-            <h2><span>4.1.2</span> Nome, Função, Valor</h2>
+            <h2><span>Diretriz 4.1.2</span> Nome, Função, Valor</h2>
             <div class="guideline-card">
                 <div class="card-content">
                     <span class="wcag-tag">Princípio: Robusto</span>
@@ -527,16 +528,16 @@
     </main>
 
     <footer role="contentinfo">
-        <p>&copy; 2025 Guia de Acessibilidade Web.</p>
+        <p>&copy; TCC 2025 Guia de Acessibilidade Web.</p>
         <p style="font-size: 0.9rem; opacity: 0.7;">
             Este site está em conformidade com WCAG 2.1 Nível A.<br>
             Desenvolvido para ensinar inclusão na prática.
         </p>
     </footer>
 
-    <!-- LÓGICA DE INTERAÇÃO -->
+    <!-- INTERAÇÃO -->
     <script>
-        // 1. Zoom (Corrigido para HTML root)
+        // Zoom 
         let currentSize = 100;
         function changeFontSize(dir) {
             if(dir === 1 && currentSize < 160) currentSize += 10;
@@ -544,7 +545,7 @@
             document.documentElement.style.fontSize = currentSize + "%";
         }
 
-        // 2. Alto Contraste
+        // Alto Contraste
         function toggleContrast() {
             const body = document.body;
             const btn = document.getElementById('btn-contrast');
@@ -554,7 +555,7 @@
             btn.innerText = isActive ? "Desativar Alto Contraste" : "Alto Contraste 🌗";
         }
 
-        // 3. Teste de Teclado
+        // Teste de teclado
         function testKeyboard() {
             const btn = document.getElementById('btn-keyboard-test');
             const msg = document.getElementById('msg-keyboard');
