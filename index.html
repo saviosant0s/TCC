@@ -310,7 +310,7 @@
             color: #fff;
         }
         .enfase{
-            font-weight: 500;
+            font-weight: 600;
         }
     </style>
 </head>
@@ -341,7 +341,7 @@
                     <span class="wcag-tag">Princípio: Perceptível</span>
                     <h3>O que o Leitor de Tela "vê"?</h3>
                     <p>Para um computador, uma imagem é apenas um amontoado de pixels. Softwares de leitura (como NVDA ou VoiceOver) não conseguem interpretar o significado da imagem sozinhos.</p>
-                    <p>Sem o atributo alt, o leitor pode ler o nome do arquivo (ex: "IMG_5502.jpg"), o que é inútil para o usuário. O texto alternativo deve transmitir a <strong>mesma informação</strong> que a imagem passa visualmente.</p>
+                    <p>Sem o atributo alt, o leitor pode ler o nome do arquivo (ex: "IMG_5502.jpg"), o que é inútil para o usuário. O texto alternativo deve transmitir a <span class="enfase">mesma informação</span> que a imagem passa visualmente.</p>
                     <div class="explanation-box">
                         <span>Dica de Ouro:</span> Se a imagem for puramente decorativa (enfeite), use <span class="enfase">alt=""</span> (vazio). Isso diz ao leitor para ignorá-la completamente.
                     </div>
@@ -349,7 +349,7 @@
                 <div class="card-code">
                     <div class="code-block correct">
                         <span class="label certo">✅ Código</span>
-                        &lt;img src="vendas.jpg" <strong>alt="Gráfico: Vendas subiram 20%"</strong>&gt;
+                        &lt;img src="vendas.jpg" <span class="enfase">alt="Gráfico: Vendas subiram 20%"</span>&gt;
                     </div>
                     
                     <div class="live-preview">
@@ -362,7 +362,7 @@
                             <span style="font-size: 0.9rem;">
                                 Passe o mouse na imagem (simulada) para ver o "Alt":<br>
                                 
-                                <strong title="Gráfico: Vendas subiram 20%" style="border-bottom: 1px dotted #333; cursor: help;">[ Passe o Mouse Aqui ]</strong>
+                                <strong title="Gráfico: Vendas subiram 20%" style="border-bottom: 1px dotted #333; cursor: help;">[ Passe o Mouse Aqui ]</span>
                             </span>
                         </div>
                     </div>
@@ -377,13 +377,13 @@
                 <div class="card-content">
                     <span class="wcag-tag">Princípio: Perceptível</span>
                     <h3>Navegação em Matriz</h3>
-                    <p>Quem enxerga, "escaneia" uma tabela visualmente e entende que o valor "R$ 50" pertence à coluna "Preço". O usuário cego navega <strong>célula por célula</strong>, perdendo esse contexto visual.</p>
+                    <p>Quem enxerga, "escaneia" uma tabela visualmente e entende que o valor "R$ 50" pertence à coluna "Preço". O usuário cego navega <span class="enfase">célula por célula</span>, perdendo esse contexto visual.</p>
                     <p>O atributo <span class="enfase">scope="col"</span> cria uma ligação invisível. Quando o usuário chega na célula do valor, o leitor anuncia automaticamente o cabeçalho correspondente antes do dado.</p>
                 </div>
                 <div class="card-code">
                     <div class="code-block correct">
                         <span class="label certo">✅ Código</span>
-                        &lt;th <strong>scope="col"</strong>&gt;Preço&lt;/th&gt; ... &lt;td&gt;R$ 50&lt;/td&gt;
+                        &lt;th <span class="enfase">scope="col"</span>&gt;Preço&lt;/th&gt; ... &lt;td&gt;R$ 50&lt;/td&gt;
                     </div>
 
                     <div class="live-preview">
@@ -444,7 +444,7 @@
                 <div class="card-content">
                     <span class="wcag-tag">Princípio: Operável</span>
                     <h3>A Lista de Links Fora de Contexto</h3>
-                    <p>Leitores de tela possuem um atalho que lista <strong>apenas os links</strong> da página para que o usuário encontre o que quer rapidamente.</p>
+                    <p>Leitores de tela possuem um atalho que lista <span class="enfase">apenas os links</span> da página para que o usuário encontre o que quer rapidamente.</p>
                     <p>Se você usar "Clique Aqui" em todos os links, o usuário ouvirá uma lista repetitiva e inútil: "Clique aqui, Clique aqui, Clique aqui". Ele não saberá para onde cada um leva.</p>
                 </div>
                 <div class="card-code">
@@ -480,8 +480,8 @@
                 <div class="card-code">
                     <div class="code-block correct">
                         <span class="label certo">✅ Código</span>
-                        &lt;label <strong>for="email"</strong>&gt;E-mail:&lt;/label&gt;<br>
-                        &lt;input <strong>id="email"</strong> type="text"&gt;
+                        &lt;label <span class="enfase">for="email"</span>&gt;E-mail:&lt;/label&gt;<br>
+                        &lt;input <span class="enfase">id="email"</span> type="text"&gt;
                     </div>
 
                     <div class="live-preview">
@@ -504,12 +504,12 @@
                     <span class="wcag-tag">Princípio: Robusto</span>
                     <h3>Dando Nome ao Invisível</h3>
                     <p>Ícones são ótimos para economizar espaço (uma lixeira, uma lupa), mas eles não têm texto. Um leitor de tela não consegue descrever um vetor SVG.</p>
-                    <p>O atributo <span class="enfase">aria-label</span> serve para fornecer um <strong>rótulo invisível</strong> que só existe para a tecnologia assistiva. Ele substitui a falta de texto visual, garantindo que o usuário saiba que aquele botão serve para "Excluir" ou "Buscar".</p>
+                    <p>O atributo <span class="enfase">aria-label</span> serve para fornecer um <span class="enfase">rótulo invisível</span> que só existe para a tecnologia assistiva. Ele substitui a falta de texto visual, garantindo que o usuário saiba que aquele botão serve para "Excluir" ou "Buscar".</p>
                 </div>
                 <div class="card-code">
                     <div class="code-block correct">
                         <span class="label certo">✅ Código</span>
-                        &lt;button <strong>aria-label="Excluir Item"</strong>&gt; 🗑️ &lt;/button&gt;
+                        &lt;button <span class="enfase">aria-label="Excluir Item"</span>&gt; 🗑️ &lt;/button&gt;
                     </div>
 
                     <div class="live-preview">
