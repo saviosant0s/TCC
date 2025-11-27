@@ -343,7 +343,7 @@
                     <p>Para um computador, uma imagem é apenas um amontoado de pixels. Softwares de leitura (como NVDA ou VoiceOver) não conseguem interpretar o significado da imagem sozinhos.</p>
                     <p>Sem o atributo alt, o leitor pode ler o nome do arquivo (ex: "IMG_5502.jpg"), o que é inútil para o usuário. O texto alternativo deve transmitir a <strong>mesma informação</strong> que a imagem passa visualmente.</p>
                     <div class="explanation-box">
-                        <strong>Dica de Ouro:</strong> Se a imagem for puramente decorativa (enfeite), use <code>alt=""</code> (vazio). Isso diz ao leitor para ignorá-la completamente.
+                        <span>Dica de Ouro:</span> Se a imagem for puramente decorativa (enfeite), use <span class="enfase">alt=""</span> (vazio). Isso diz ao leitor para ignorá-la completamente.
                     </div>
                 </div>
                 <div class="card-code">
@@ -378,7 +378,7 @@
                     <span class="wcag-tag">Princípio: Perceptível</span>
                     <h3>Navegação em Matriz</h3>
                     <p>Quem enxerga, "escaneia" uma tabela visualmente e entende que o valor "R$ 50" pertence à coluna "Preço". O usuário cego navega <strong>célula por célula</strong>, perdendo esse contexto visual.</p>
-                    <p>O atributo <code>scope="col"</code> cria uma ligação invisível. Quando o usuário chega na célula do valor, o leitor anuncia automaticamente o cabeçalho correspondente antes do dado.</p>
+                    <p>O atributo <span class="enfase">scope="col"</span> cria uma ligação invisível. Quando o usuário chega na célula do valor, o leitor anuncia automaticamente o cabeçalho correspondente antes do dado.</p>
                 </div>
                 <div class="card-code">
                     <div class="code-block correct">
@@ -417,8 +417,8 @@
                 <div class="card-content">
                     <span class="wcag-tag">Princípio: Operável</span>
                     <h3>A Falácia do "Clique"</h3>
-                    <p>Nem todo mundo usa mouse. Pessoas cegas ou com deficiências motoras graves (que não conseguem segurar um mouse) usam a tecla <code>TAB</code> para navegar.</p>
-                    <p>Elementos como <code>&lt;div&gt;</code> ou <code>&lt;span&gt;</code> são invisíveis para o teclado. Se você fizer um botão com div, o usuário de teclado nunca conseguirá "chegar" nele para clicar. Use sempre elementos nativos como <code>&lt;button&gt;</code> ou <code>&lt;a&gt;</code>.</p>
+                    <p>Nem todo mundo usa mouse. Pessoas cegas ou com deficiências motoras graves (que não conseguem segurar um mouse) usam a tecla <span class="enfase">TAB</span> para navegar.</p>
+                    <p>Elementos como <span class="enfase">&lt;div&gt;</span> ou <span class="enfase">&lt;span&gt;</span> são invisíveis para o teclado. Se você fizer um botão com div, o usuário de teclado nunca conseguirá "chegar" nele para clicar. Use sempre elementos nativos como <span class="enfase">&lt;button&gt;</span> ou <span class="enfase">&lt;a&gt;</span>.</p>
                 </div>
                 <div class="card-code">
                     <div class="code-block correct">
@@ -472,7 +472,7 @@
                     <span class="wcag-tag">Princípio: Compreensível</span>
                     <h3>A Conexão Programática</h3>
                     <p>Visualmente, basta colocar um texto ao lado de um campo para sabermos o que preencher. Para o cego, essa relação visual não existe.</p>
-                    <p>O atributo <code>for</code> no rótulo conecta-se ao <code>id</code> do input. Quando o foco entra no campo, o leitor busca esse rótulo conectado e o lê. Sem isso, o usuário ouve apenas "Campo de edição em branco".</p>
+                    <p>O atributo <span class="enfase">for</span> no rótulo conecta-se ao <span class="enfase">id</span> do input. Quando o foco entra no campo, o leitor busca esse rótulo conectado e o lê. Sem isso, o usuário ouve apenas "Campo de edição em branco".</p>
                     <div class="explanation-box">
                         Isso também aumenta a área de clique: clicar na palavra "Nome" ativa o campo!
                     </div>
@@ -504,7 +504,7 @@
                     <span class="wcag-tag">Princípio: Robusto</span>
                     <h3>Dando Nome ao Invisível</h3>
                     <p>Ícones são ótimos para economizar espaço (uma lixeira, uma lupa), mas eles não têm texto. Um leitor de tela não consegue descrever um vetor SVG.</p>
-                    <p>O atributo <code>aria-label</code> serve para fornecer um <strong>rótulo invisível</strong> que só existe para a tecnologia assistiva. Ele substitui a falta de texto visual, garantindo que o usuário saiba que aquele botão serve para "Excluir" ou "Buscar".</p>
+                    <p>O atributo <span class="enfase">aria-label</span> serve para fornecer um <strong>rótulo invisível</strong> que só existe para a tecnologia assistiva. Ele substitui a falta de texto visual, garantindo que o usuário saiba que aquele botão serve para "Excluir" ou "Buscar".</p>
                 </div>
                 <div class="card-code">
                     <div class="code-block correct">
