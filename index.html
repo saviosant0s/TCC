@@ -380,7 +380,7 @@
                     <p>Quem enxerga, "escaneia" uma tabela visualmente e entende que o valor "R$ 50" pertence à coluna "Preço". O usuário cego navega <span class="enfase">célula por célula</span>, perdendo esse contexto visual.</p>
                     <p>O atributo <span class="enfase">scope="col"</span> cria uma ligação invisível. Quando o usuário chega na célula do valor, o leitor anuncia automaticamente o cabeçalho correspondente antes do dado.</p>
                 </div>
-                <div class="card-code">
+                <div class="card-code" aria-hidden="true">
                     <div class="code-block correct">
                         <span class="label certo">✅ Código</span>
                         &lt;th <span class="enfase">scope="col"</span>&gt;Preço&lt;/th&gt; ... &lt;td&gt;R$ 50&lt;/td&gt;
@@ -420,7 +420,7 @@
                     <p>Nem todo mundo usa mouse. Pessoas cegas ou com deficiências motoras graves (que não conseguem segurar um mouse) usam a tecla <span class="enfase">TAB</span> para navegar.</p>
                     <p>Elementos como <span class="enfase">&lt;div&gt;</span> ou <span class="enfase">&lt;span&gt;</span> são invisíveis para o teclado. Se você fizer um botão com div, o usuário de teclado nunca conseguirá "chegar" nele para clicar. Use sempre elementos nativos como <span class="enfase">&lt;button&gt;</span> ou <span class="enfase">&lt;a&gt;</span>.</p>
                 </div>
-                <div class="card-code">
+                <div class="card-code" aria-hidden="true">
                     <div class="code-block correct">
                         <span class="label certo">✅ Código</span>
                         &lt;button&gt;Clique Aqui&lt;/button&gt;
@@ -447,7 +447,7 @@
                     <p>Leitores de tela possuem um atalho que lista <span class="enfase">apenas os links</span> da página para que o usuário encontre o que quer rapidamente.</p>
                     <p>Se você usar "Clique Aqui" em todos os links, o usuário ouvirá uma lista repetitiva e inútil: "Clique aqui, Clique aqui, Clique aqui". Ele não saberá para onde cada um leva.</p>
                 </div>
-                <div class="card-code">
+                <div class="card-code" aria-hidden="true">
                     <div class="code-block correct">
                         <span class="label certo">✅ Código</span>
                         &lt;a href="..."&gt;Baixar PDF do Contrato&lt;/a&gt;
@@ -477,7 +477,7 @@
                         Isso também aumenta a área de clique: clicar na palavra "Nome" ativa o campo!
                     </div>
                 </div>
-                <div class="card-code">
+                <div class="card-code" aria-hidden="true">
                     <div class="code-block correct">
                         <span class="label certo">✅ Código</span>
                         &lt;label <span class="enfase">for="email"</span>&gt;E-mail:&lt;/label&gt;<br>
@@ -506,7 +506,7 @@
                     <p>Ícones são ótimos para economizar espaço (uma lixeira, uma lupa), mas eles não têm texto. Um leitor de tela não consegue descrever um vetor SVG.</p>
                     <p>O atributo <span class="enfase">aria-label</span> serve para fornecer um <span class="enfase">rótulo invisível</span> que só existe para a tecnologia assistiva. Ele substitui a falta de texto visual, garantindo que o usuário saiba que aquele botão serve para "Excluir" ou "Buscar".</p>
                 </div>
-                <div class="card-code">
+                <div class="card-code" aria-hidden="true">
                     <div class="code-block correct">
                         <span class="label certo">✅ Código</span>
                         &lt;button <span class="enfase">aria-label="Excluir Item"</span>&gt; 🗑️ &lt;/button&gt;
