@@ -353,17 +353,29 @@
                     </div>
                     
                     <div class="live-preview">
-                        <span class="preview-title">Teste na Prática</span>
+                        <!-- Ajuste 1: Título semântico para pausa correta -->
+                        <h3 class="preview-title" style="margin: 0 0 10px 0;">Teste na Prática</h3>
+                        
                         <div style="display: flex; align-items: center; gap: 15px;">
-                            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <!-- Ajuste 2: aria-hidden="true" impede o leitor de tentar ler os vetores do ícone -->
+                            <svg aria-hidden="true" focusable="false" width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M21.21 15.89A10 10 0 1 1 8 2.83"></path>
                                 <path d="M22 12A10 10 0 0 0 12 2v10z"></path>
                             </svg>
-                            <span style="font-size: 0.9rem;">
+                            
+                            <p style="font-size: 0.9rem; margin: 0;">
                                 Passe o mouse na imagem (simulada) para ver o "Alt":<br>
                                 
-                                <strong title="Gráfico: Vendas subiram 20%" style="border-bottom: 1px dotted #333; cursor: help;">[ Passe o Mouse Aqui ]</span>
-                            </span>
+                                <!-- Ajuste 3: aria-label garante que o leitor leia o conteúdo do tooltip -->
+                                <!-- tabindex="0" permite que quem navega por teclado foque no elemento para ler -->
+                                <strong 
+                                    tabindex="0"
+                                    aria-label="Gráfico: Vendas subiram 20%" 
+                                    title="Gráfico: Vendas subiram 20%" 
+                                    style="border-bottom: 1px dotted #333; cursor: help;">
+                                    [ Passe o Mouse ou Foque Aqui ]
+                                </strong>
+                            </p>
                         </div>
                     </div>
                 </div>
