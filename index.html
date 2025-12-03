@@ -61,6 +61,18 @@
         
         html { font-size: 100%; } /* Base para REM */
 
+        .visually-hidden{
+                position: absolute !important;
+                width: 1px !important;
+                height: 1px !important;
+                padding: 0 !important;
+                margin: -1px !important;
+                overflow: hidden !important;
+                clip: rect(0, 0, 0, 0) !important;
+                white-space: nowrap !important;
+                border: 0 !important
+        }
+
         body {
             font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             background-color: var(--bg-body);
@@ -389,15 +401,15 @@
                     <div class="live-preview">
                         <span class="preview-title">Teste na Prática</span>
                         <table style="width:100%; border-collapse: collapse;">
-                            <thead>
+                            <thead tabindex="-1" aria-hidden="true">
                                 <tr>
                                     <th scope="col" style="border:1px solid #ccc; padding:5px;">Produto</th>
                                     <th scope="col" style="border:1px solid #ccc; padding:5px;">Preço</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody >
                                 <tr>
-                                    <td style="border:1px solid #ccc; padding:5px;">Mouse Gamer</td>
+                                    <td style="border:1px solid #ccc; padding:5px;"><div class="visually-hidden">Coluna Produto</div> Mouse Gamer</td>
                                     <td style="border:1px solid #ccc; padding:5px;">R$ 150</td>
                                 </tr>
                             </tbody>
