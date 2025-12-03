@@ -346,7 +346,7 @@
                         <span class="enfase" >Dica de Ouro:</span> Se a imagem for puramente decorativa (enfeite), use <span class="enfase">alt=""</span> (vazio). Isso diz ao leitor para ignorá-la completamente.
                     </div>
                 </div>
-                <div class="card-code" tabindex="-1">
+                <div class="card-code" aria-hidden="true" tabindex="-1">
                     <div class="code-block correct">
                         <span class="label certo">✅ Código</span>
                         &lt;img src="vendas.jpg" <span class="enfase">alt="Gráfico: Vendas subiram 20%"</span>&gt;
@@ -372,15 +372,15 @@
 
         <!-- 1.3.1 TABELAS -->
         <section id="guideline-131">
-            <h2><span>Diretriz 1.3.1</span> Informações e Relações</h2>
+            <h2 tabindex="0"><span>Diretriz 1.3.1</span> Informações e Relações</h2>
             <div class="guideline-card">
                 <div class="card-content">
-                    <span class="wcag-tag">Princípio: Perceptível</span>
-                    <h3>Navegação em Matriz</h3>
-                    <p>Quem enxerga, "escaneia" uma tabela visualmente e entende que o valor "R$ 50" pertence à coluna "Preço". O usuário cego navega <span class="enfase">célula por célula</span>, perdendo esse contexto visual.</p>
-                    <p>O atributo <span class="enfase">scope="col"</span> cria uma ligação invisível. Quando o usuário chega na célula do valor, o leitor anuncia automaticamente o cabeçalho correspondente antes do dado.</p>
+                    <span tabindex="0" class="wcag-tag">Princípio: Perceptível</span>
+                    <h3 tabindex="0">Navegação em Matriz</h3>
+                    <p tabindex="0">Quem enxerga, "escaneia" uma tabela visualmente e entende que o valor "R$ 50" pertence à coluna "Preço". O usuário cego navega <span class="enfase">célula por célula</span>, perdendo esse contexto visual.</p>
+                    <p tabindex="0">O atributo <span class="enfase">scope="col"</span> cria uma ligação invisível. Quando o usuário chega na célula do valor, o leitor anuncia automaticamente o cabeçalho correspondente antes do dado.</p>
                 </div>
-                <div class="card-code" aria-hidden="true">
+                <div class="card-code" tabindex="-1" aria-hidden="true">
                     <div class="code-block correct">
                         <span class="label certo">✅ Código</span>
                         &lt;th <span class="enfase">scope="col"</span>&gt;Preço&lt;/th&gt; ... &lt;td&gt;R$ 50&lt;/td&gt;
@@ -412,15 +412,15 @@
 
         <!-- 2.1.1 TECLADO -->
         <section id="guideline-211">
-            <h2><span> Diretriz 2.1.1</span> Teclado</h2>
+            <h2 tabindex="0"><span> Diretriz 2.1.1</span> Teclado</h2>
             <div class="guideline-card">
                 <div class="card-content">
-                    <span class="wcag-tag">Princípio: Operável</span>
-                    <h3>A Falácia do "Clique"</h3>
-                    <p>Nem todo mundo usa mouse. Pessoas cegas ou com deficiências motoras graves (que não conseguem segurar um mouse) usam a tecla <span class="enfase">TAB</span> para navegar.</p>
-                    <p>Elementos como <span class="enfase">&lt;div&gt;</span> ou <span class="enfase">&lt;span&gt;</span> são invisíveis para o teclado. Se você fizer um botão com div, o usuário de teclado nunca conseguirá "chegar" nele para clicar. Use sempre elementos nativos como <span class="enfase">&lt;button&gt;</span> ou <span class="enfase">&lt;a&gt;</span>.</p>
+                    <span tabindex="0" class="wcag-tag">Princípio: Operável</span>
+                    <h3 tabindex="0">A Falácia do "Clique"</h3>
+                    <p tabindex="0">Nem todo mundo usa mouse. Pessoas cegas ou com deficiências motoras graves (que não conseguem segurar um mouse) usam a tecla <span class="enfase">TAB</span> para navegar.</p>
+                    <p tabindex="0">Elementos como <span class="enfase">&lt;div&gt;</span> ou <span class="enfase">&lt;span&gt;</span> são invisíveis para o teclado. Se você fizer um botão com div, o usuário de teclado nunca conseguirá "chegar" nele para clicar. Use sempre elementos nativos como <span class="enfase">&lt;button&gt;</span> ou <span class="enfase">&lt;a&gt;</span>.</p>
                 </div>
-                <div class="card-code" aria-hidden="true">
+                <div class="card-code" tabindex="-1" aria-hidden="true">
                     <div class="code-block correct">
                         <span class="label certo">✅ Código</span>
                         &lt;button&gt;Clique Aqui&lt;/button&gt;
@@ -439,15 +439,15 @@
 
         <!-- 2.4.4 LINKS -->
         <section id="guideline-244">
-            <h2><span>Diretriz 2.4.4</span> Propósito do Link</h2>
+            <h2 tabindex="0"><span>Diretriz 2.4.4</span> Propósito do Link</h2>
             <div class="guideline-card">
                 <div class="card-content">
-                    <span class="wcag-tag">Princípio: Operável</span>
-                    <h3>A Lista de Links Fora de Contexto</h3>
-                    <p>Leitores de tela possuem um atalho que lista <span class="enfase">apenas os links</span> da página para que o usuário encontre o que quer rapidamente.</p>
-                    <p>Se você usar "Clique Aqui" em todos os links, o usuário ouvirá uma lista repetitiva e inútil: "Clique aqui, Clique aqui, Clique aqui". Ele não saberá para onde cada um leva.</p>
+                    <span tabindex="0" class="wcag-tag">Princípio: Operável</span>
+                    <h3 tabindex="0">A Lista de Links Fora de Contexto</h3>
+                    <p tabindex="0">Leitores de tela possuem um atalho que lista <span class="enfase">apenas os links</span> da página para que o usuário encontre o que quer rapidamente.</p>
+                    <p tabindex="0">Se você usar "Clique Aqui" em todos os links, o usuário ouvirá uma lista repetitiva e inútil: "Clique aqui, Clique aqui, Clique aqui". Ele não saberá para onde cada um leva.</p>
                 </div>
-                <div class="card-code" aria-hidden="true">
+                <div class="card-code" tabindex="-1" aria-hidden="true">
                     <div class="code-block correct">
                         <span class="label certo">✅ Código</span>
                         &lt;a href="..."&gt;Baixar PDF do Contrato&lt;/a&gt;
@@ -466,18 +466,18 @@
 
         <!-- 3.3.2 LABELS -->
         <section id="guideline-332">
-            <h2><span>Diretriz 3.3.2</span> Rótulos (Labels)</h2>
+            <h2 tabindex="0"><span>Diretriz 3.3.2</span> Rótulos (Labels)</h2>
             <div class="guideline-card">
                 <div class="card-content">
-                    <span class="wcag-tag">Princípio: Compreensível</span>
-                    <h3>A Conexão Programática</h3>
-                    <p>Visualmente, basta colocar um texto ao lado de um campo para sabermos o que preencher. Para o cego, essa relação visual não existe.</p>
-                    <p>O atributo <span class="enfase">for</span> no rótulo conecta-se ao <span class="enfase">id</span> do input. Quando o foco entra no campo, o leitor busca esse rótulo conectado e o lê. Sem isso, o usuário ouve apenas "Campo de edição em branco".</p>
-                    <div class="explanation-box">
+                    <span tabindex="0" class="wcag-tag">Princípio: Compreensível</span>
+                    <h3 tabindex="0">A Conexão Programática</h3>
+                    <p tabindex="0">Visualmente, basta colocar um texto ao lado de um campo para sabermos o que preencher. Para o cego, essa relação visual não existe.</p>
+                    <p tabindex="0">O atributo <span class="enfase">for</span> no rótulo conecta-se ao <span class="enfase">id</span> do input. Quando o foco entra no campo, o leitor busca esse rótulo conectado e o lê. Sem isso, o usuário ouve apenas "Campo de edição em branco".</p>
+                    <div class="explanation-box" tabindex="0">
                         Isso também aumenta a área de clique: clicar na palavra "Nome" ativa o campo!
                     </div>
                 </div>
-                <div class="card-code" aria-hidden="true">
+                <div class="card-code" aria-hidden="true" tabindex="-1">
                     <div class="code-block correct">
                         <span class="label certo">✅ Código</span>
                         &lt;label <span class="enfase">for="email"</span>&gt;E-mail:&lt;/label&gt;<br>
@@ -498,15 +498,15 @@
 
         <!-- 4.1.2 ARIA LABELS -->
         <section id="guideline-412">
-            <h2><span>Diretriz 4.1.2</span> Nome, Função, Valor</h2>
+            <h2 tabindex="0"><span>Diretriz 4.1.2</span> Nome, Função, Valor</h2>
             <div class="guideline-card">
                 <div class="card-content">
-                    <span class="wcag-tag">Princípio: Robusto</span>
-                    <h3>Dando Nome ao Invisível</h3>
-                    <p>Ícones são ótimos para economizar espaço (uma lixeira, uma lupa), mas eles não têm texto. Um leitor de tela não consegue descrever um vetor SVG.</p>
-                    <p>O atributo <span class="enfase">aria-label</span> serve para fornecer um <span class="enfase">rótulo invisível</span> que só existe para a tecnologia assistiva. Ele substitui a falta de texto visual, garantindo que o usuário saiba que aquele botão serve para "Excluir" ou "Buscar".</p>
+                    <span class="wcag-tag" tabindex="0">Princípio: Robusto</span>
+                    <h3 tabindex="0">Dando Nome ao Invisível</h3>
+                    <p tabindex="0">Ícones são ótimos para economizar espaço (uma lixeira, uma lupa), mas eles não têm texto. Um leitor de tela não consegue descrever um vetor SVG.</p>
+                    <p tabindex="0">O atributo <span class="enfase">aria-label</span> serve para fornecer um <span class="enfase">rótulo invisível</span> que só existe para a tecnologia assistiva. Ele substitui a falta de texto visual, garantindo que o usuário saiba que aquele botão serve para "Excluir" ou "Buscar".</p>
                 </div>
-                <div class="card-code" aria-hidden="true">
+                <div class="card-code" aria-hidden="true" tabindex="-1">
                     <div class="code-block correct">
                         <span class="label certo">✅ Código</span>
                         &lt;button <span class="enfase">aria-label="Excluir Item"</span>&gt; 🗑️ &lt;/button&gt;
@@ -531,8 +531,8 @@
     </main>
 
     <footer role="contentinfo">
-        <p>&copy; TCC 2025 Guia de Acessibilidade Web.</p>
-        <p style="font-size: 0.9rem; opacity: 0.7;">
+        <p tabindex="0" >&copy; TCC 2025 Guia de Acessibilidade Web.</p>
+        <p tabindex="0" style="font-size: 0.9rem; opacity: 0.7;">
             Este site está em conformidade com WCAG 2.1 Nível A.<br>
             Desenvolvido para ensinar inclusão na prática.
         </p>
