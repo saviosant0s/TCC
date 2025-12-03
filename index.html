@@ -335,18 +335,18 @@
 
         <!-- 1.1.1 CONTEÚDO NÃO TEXTUAL -->
         <section id="guideline-111">
-            <h2><span>Diretriz 1.1.1</span> Conteúdo Não Textual</h2>
+            <h2 tabindex="0"><span>Diretriz 1.1.1</span> Conteúdo Não Textual</h2>
             <div class="guideline-card">
                 <div class="card-content">
-                    <span class="wcag-tag">Princípio: Perceptível</span>
-                    <h3>O que o Leitor de Tela "vê"?</h3>
-                    <p>Para um computador, uma imagem é apenas um amontoado de pixels. Softwares de leitura (como NVDA ou VoiceOver) não conseguem interpretar o significado da imagem sozinhos.</p>
-                    <p>Sem o atributo alt, o leitor pode ler o nome do arquivo (ex: "IMG_5502.jpg"), o que é inútil para o usuário. O texto alternativo deve transmitir a <span class="enfase">mesma informação</span> que a imagem passa visualmente.</p>
-                    <div class="explanation-box">
-                        <span class="enfase">Dica de Ouro:</span> Se a imagem for puramente decorativa (enfeite), use <span class="enfase">alt=""</span> (vazio). Isso diz ao leitor para ignorá-la completamente.
+                    <span tabindex="0" class="wcag-tag">Princípio: Perceptível</span>
+                    <h3 tabindex="0">O que o Leitor de Tela "vê"?</h3>
+                    <p tabindex="0">Para um computador, uma imagem é apenas um amontoado de pixels. Softwares de leitura (como NVDA ou VoiceOver) não conseguem interpretar o significado da imagem sozinhos.</p>
+                    <p tabindex="0">Sem o atributo alt, o leitor pode ler o nome do arquivo (ex: "IMG_5502.jpg"), o que é inútil para o usuário. O texto alternativo deve transmitir a <span class="enfase">mesma informação</span> que a imagem passa visualmente.</p>
+                    <div tabindex="0" class="explanation-box">
+                        <span class="enfase" >Dica de Ouro:</span> Se a imagem for puramente decorativa (enfeite), use <span class="enfase">alt=""</span> (vazio). Isso diz ao leitor para ignorá-la completamente.
                     </div>
                 </div>
-                <div class="card-code" aria-hidden="true">
+                <div class="card-code" tabindex="-1">
                     <div class="code-block correct">
                         <span class="label certo">✅ Código</span>
                         &lt;img src="vendas.jpg" <span class="enfase">alt="Gráfico: Vendas subiram 20%"</span>&gt;
