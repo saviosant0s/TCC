@@ -390,12 +390,12 @@
                     <span tabindex="0" class="wcag-tag">Princípio: Perceptível</span>
                     <h3 tabindex="0">Navegação em Matriz</h3>
                     <p tabindex="0">Quem enxerga, "escaneia" uma tabela visualmente e entende que o valor "R$ 50" pertence à coluna "Preço". O usuário cego navega <span class="enfase">célula por célula</span>, perdendo esse contexto visual.</p>
-                    <p tabindex="0">O atributo <span class="enfase">scope="col"</span> cria uma ligação invisível. Quando o usuário chega na célula do valor, o leitor anuncia automaticamente o cabeçalho correspondente antes do dado.</p>
+                    <p tabindex="0">Para quem vê, a tabela organiza os dados. Para quem ouve, essa estrutura pode ser confusa. Aqui, usamos aria-hidden para 'silenciar' a formatação visual e entregamos uma frase completa (ex: 'Preço: R$ 50') em cada célula usando classes utilitárias invisíveis, garantindo uma leitura linear e sem ambiguidades.</p>
                 </div>
                 <div class="card-code" tabindex="0">
                     <div class="code-block correct" aria-hidden="true" tabindex="-1">
                         <span class="label certo" a>✅ Código</span>
-                        &lt;th <span class="enfase">scope="col"</span>&gt;Preço&lt;/th&gt; ... &lt;td&gt;R$ 50&lt;/td&gt;
+                        &lt;th <span class="enfase">aria-hidden="true"</span>&gt;Preço&lt;/th&gt; ... &lt;td&gt;&lt;span class="visually-hidden"&gt;Preço: &lt;/span&gt;R$ 50&lt;/td&gt;
                     </div>
 
                     <div class="live-preview">
