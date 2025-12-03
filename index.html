@@ -392,9 +392,9 @@
                     <p tabindex="0">Quem enxerga, "escaneia" uma tabela visualmente e entende que o valor "R$ 50" pertence à coluna "Preço". O usuário cego navega <span class="enfase">célula por célula</span>, perdendo esse contexto visual.</p>
                     <p tabindex="0">O atributo <span class="enfase">scope="col"</span> cria uma ligação invisível. Quando o usuário chega na célula do valor, o leitor anuncia automaticamente o cabeçalho correspondente antes do dado.</p>
                 </div>
-                <div class="card-code" tabindex="-1" aria-hidden="true">
-                    <div class="code-block correct">
-                        <span class="label certo">✅ Código</span>
+                <div class="card-code" tabindex="0">
+                    <div class="code-block correct" aria-hidden="true" tabindex="-1">
+                        <span class="label certo" a>✅ Código</span>
                         &lt;th <span class="enfase">scope="col"</span>&gt;Preço&lt;/th&gt; ... &lt;td&gt;R$ 50&lt;/td&gt;
                     </div>
 
