@@ -57,7 +57,8 @@ O projeto foi desenvolvido com tecnologias nativas para garantir leveza e máxim
 
 ```
 index.html          → conteúdo (HTML semântico)
-css/style.css       → estilos (cores em variáveis, incluindo o alto contraste)
+css/style.css       → estilos (cores em variáveis: tema claro, escuro e alto contraste)
+fonts/              → fonte Atkinson Hyperlegible (licença OFL), hospedada no próprio site
 js/main.js          → barra de acessibilidade e demonstrações interativas
 docs/revisao.md     → revisão técnica feita após o TCC (erros corrigidos e porquês)
 tcc-original-2025/  → versão original, exatamente como foi apresentada na banca

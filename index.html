@@ -3,332 +3,506 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Guia prático, interativo e explicativo dos critérios de sucesso de Nível A da WCAG 2.1.">
-    <title>Guia Prático WCAG 2.1: critérios de Nível A</title>
+    <meta name="description" content="Guia prático e interativo dos critérios de sucesso de Nível A da WCAG 2.1, explicado em português com exemplos de código e simulações de leitor de tela.">
+    <title>Guia Prático WCAG 2.1</title>
+    <link rel="preload" href="fonts/atkinson-next-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-    <a href="#main-content" class="skip-link">Pular para o conteúdo principal</a>
+    <a href="#conteudo" class="skip-link">Pular para o conteúdo</a>
 
-    <header class="site-header">
-        <div class="site-header__inner">
-            <h1>Guia Prático WCAG 2.1</h1>
-            <p>Entenda a teoria e veja na prática os critérios de sucesso de <span class="enfase">Nível A</span>, com foco em pessoas com deficiência visual.</p>
+    <header class="topbar">
+        <div class="topbar__inner">
+            <a class="wordmark" href="#conteudo">
+                <svg width="28" height="28" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+                    <circle cx="16" cy="16" r="14.5" fill="none" stroke="currentColor" stroke-width="2"></circle>
+                    <circle cx="16" cy="8.5" r="2.3" fill="currentColor"></circle>
+                    <path d="M8.5 12.5 16 14l7.5-1.5M16 14v5.5m0 0-3.5 6.5M16 19.5l3.5 6.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
+                Guia Prático WCAG
+            </a>
 
-            <div class="a11y-toolbar" role="group" aria-label="Ferramentas de acessibilidade">
-                <button type="button" id="btn-contrast" data-action="toggle-contrast" aria-pressed="false">
-                    Alto contraste <span aria-hidden="true">🌗</span>
+            <div class="prefs" role="group" aria-label="Preferências de leitura">
+                <button type="button" class="pref-button pref-button--toggle" id="btn-contrast" data-action="toggle-contrast" aria-pressed="false">
+                    <span class="switch" aria-hidden="true"></span>
+                    Alto contraste
                 </button>
-                <button type="button" data-action="font-increase">A+<span class="visually-hidden"> (aumentar fonte)</span></button>
-                <button type="button" data-action="font-decrease">A-<span class="visually-hidden"> (diminuir fonte)</span></button>
-                <button type="button" data-action="font-reset">A<span class="visually-hidden"> (fonte padrão)</span></button>
+                <div class="prefs__group">
+                    <span class="prefs__label" id="label-tamanho">Tamanho do texto</span>
+                    <div class="prefs__buttons" role="group" aria-labelledby="label-tamanho">
+                        <button type="button" class="pref-button" data-action="font-decrease">A-<span class="visually-hidden"> (diminuir)</span></button>
+                        <button type="button" class="pref-button" data-action="font-reset">A<span class="visually-hidden"> (padrão)</span></button>
+                        <button type="button" class="pref-button" data-action="font-increase">A+<span class="visually-hidden"> (aumentar)</span></button>
+                    </div>
+                </div>
             </div>
-            <p id="toolbar-status" class="visually-hidden" role="status"></p>
+            <p id="prefs-status" class="visually-hidden" role="status"></p>
         </div>
     </header>
 
-    <main id="main-content" class="container" tabindex="-1">
+    <div class="layout">
 
-        <!-- INTRODUÇÃO -->
-        <section id="introducao" aria-labelledby="titulo-introducao">
-            <div class="intro">
-                <h2 id="titulo-introducao">Como a WCAG é organizada</h2>
-                <p>A <strong>WCAG</strong> (<span lang="en">Web Content Accessibility Guidelines</span>) é a norma internacional de acessibilidade na web, publicada pelo W3C. Ela é organizada em camadas: <strong>4 princípios</strong> (Perceptível, Operável, Compreensível e Robusto), que se dividem em <strong>diretrizes</strong>, que por sua vez se dividem em <strong>critérios de sucesso</strong>, as regras que podem ser testadas.</p>
-                <p>Cada critério tem um nível de conformidade: <strong>A</strong> (o mínimo), <strong>AA</strong> (o nível mais exigido em leis e políticas de acessibilidade) e <strong>AAA</strong> (o mais rigoroso). Nos números, o primeiro dígito é o princípio, o segundo a diretriz e o terceiro o critério: em <strong>1.1.1</strong>, temos o princípio 1 (Perceptível), a diretriz 1.1 (Alternativas em texto) e o critério 1.1.1 (Conteúdo não textual).</p>
+        <nav class="index" aria-labelledby="titulo-indice">
+            <p class="index__title" id="titulo-indice">Critérios neste guia</p>
 
-                <nav class="toc" aria-labelledby="titulo-sumario">
-                    <h3 id="titulo-sumario">Critérios explicados neste guia</h3>
-                    <ol>
-                        <li><a href="#criterio-111">1.1.1 Conteúdo não textual</a></li>
-                        <li><a href="#criterio-131">1.3.1 Informações e relações</a></li>
-                        <li><a href="#criterio-211">2.1.1 Teclado</a></li>
-                        <li><a href="#criterio-244">2.4.4 Finalidade do link (em contexto)</a></li>
-                        <li><a href="#criterio-332">3.3.2 Rótulos ou instruções</a></li>
-                        <li><a href="#criterio-412">4.1.2 Nome, função, valor</a></li>
-                    </ol>
-                </nav>
+            <div class="index__group">
+                <p class="index__principle"><span>1</span>Perceptível</p>
+                <ul>
+                    <li><a href="#criterio-111"><span class="index__num">1.1.1</span> Conteúdo não textual</a></li>
+                    <li><a href="#criterio-131"><span class="index__num">1.3.1</span> Informações e relações</a></li>
+                </ul>
             </div>
-        </section>
+            <div class="index__group">
+                <p class="index__principle"><span>2</span>Operável</p>
+                <ul>
+                    <li><a href="#criterio-211"><span class="index__num">2.1.1</span> Teclado</a></li>
+                    <li><a href="#criterio-244"><span class="index__num">2.4.4</span> Finalidade do link</a></li>
+                </ul>
+            </div>
+            <div class="index__group">
+                <p class="index__principle"><span>3</span>Compreensível</p>
+                <ul>
+                    <li><a href="#criterio-332"><span class="index__num">3.3.2</span> Rótulos ou instruções</a></li>
+                </ul>
+            </div>
+            <div class="index__group">
+                <p class="index__principle"><span>4</span>Robusto</p>
+                <ul>
+                    <li><a href="#criterio-412"><span class="index__num">4.1.2</span> Nome, função, valor</a></li>
+                </ul>
+            </div>
+        </nav>
 
-        <!-- 1.1.1 CONTEÚDO NÃO TEXTUAL -->
-        <section id="criterio-111" aria-labelledby="titulo-111">
-            <h2 id="titulo-111"><span class="criterion-number">Critério 1.1.1</span> Conteúdo não textual</h2>
-            <div class="guideline-card">
-                <div class="card-content">
-                    <p class="wcag-tag">Princípio: Perceptível · Nível A</p>
-                    <h3>O que o leitor de tela "vê"?</h3>
-                    <p>Para o computador, uma imagem é só um conjunto de pixels. Leitores de tela como NVDA, JAWS e VoiceOver não conseguem interpretar sozinhos o que ela mostra: eles dependem de um texto alternativo escrito por quem fez o site.</p>
-                    <p>Sem o atributo <code>alt</code>, muitos leitores anunciam o nome do arquivo (ex.: "IMG_5502.jpg"), o que não ajuda em nada. O texto alternativo deve transmitir a <span class="enfase">mesma informação ou função</span> que a imagem passa visualmente.</p>
-                    <div class="explanation-box">
-                        <p><span class="enfase">Dica de ouro:</span> se a imagem for puramente decorativa, use <code>alt=""</code> (vazio, mas presente). Assim o leitor de tela a ignora. Nunca omita o atributo: sem ele, o leitor pode ler o nome do arquivo.</p>
+        <main id="conteudo" class="content" tabindex="-1">
+
+            <!-- ABERTURA -->
+            <div class="opening">
+                <p class="eyebrow">TCC · IFBA Campus Valença · 2025</p>
+                <h1>Guia Prático WCAG 2.1</h1>
+                <p class="lead">A WCAG é a norma internacional de acessibilidade na web, mas a documentação oficial é difícil de ler. Aqui cada critério vem explicado em português simples, com o código errado, o código certo e um teste para você ver a diferença.</p>
+                <p class="lead">O foco são pessoas com deficiência visual, que navegam com leitor de tela, teclado ou ampliação.</p>
+
+                <section class="anatomy" aria-labelledby="titulo-anatomia">
+                    <h2 id="titulo-anatomia">Como ler o número de um critério</h2>
+                    <p>A norma é dividida em princípios, diretrizes e critérios de sucesso. Os três números de um critério mostram onde ele fica.</p>
+                    <ol class="anatomy__parts">
+                        <li>
+                            <span class="anatomy__digit" aria-hidden="true">1</span>
+                            <span class="anatomy__role">Princípio</span>
+                            <span class="anatomy__name">Perceptível</span>
+                        </li>
+                        <li>
+                            <span class="anatomy__digit" aria-hidden="true">.1</span>
+                            <span class="anatomy__role">Diretriz 1.1</span>
+                            <span class="anatomy__name">Alternativas em texto</span>
+                        </li>
+                        <li>
+                            <span class="anatomy__digit" aria-hidden="true">.1</span>
+                            <span class="anatomy__role">Critério 1.1.1</span>
+                            <span class="anatomy__name">Conteúdo não textual</span>
+                        </li>
+                    </ol>
+                    <ul class="levels">
+                        <li><span class="level">A</span> <span><strong>O mínimo.</strong> Sem ele, partes do site ficam inacessíveis.</span></li>
+                        <li><span class="level">AA</span> <span><strong>O alvo mais comum</strong> em leis e políticas de acessibilidade.</span></li>
+                        <li><span class="level">AAA</span> <span><strong>O mais rigoroso</strong>, aplicado onde for possível.</span></li>
+                    </ul>
+                </section>
+            </div>
+
+            <!-- 1.1.1 CONTEÚDO NÃO TEXTUAL -->
+            <section class="criterion" id="criterio-111" aria-labelledby="titulo-111">
+                <header class="criterion__head">
+                    <h2 id="titulo-111"><span class="criterion__num">1.1.1</span> Conteúdo não textual</h2>
+                    <dl class="criterion__meta">
+                        <div><dt>Princípio</dt><dd>Perceptível</dd></div>
+                        <div><dt>Diretriz</dt><dd>1.1 Alternativas em texto</dd></div>
+                        <div><dt class="visually-hidden">Nível</dt><dd><span class="level">A</span></dd></div>
+                    </dl>
+                </header>
+                <div class="criterion__body">
+                    <div class="criterion__text">
+                        <h3>O que o leitor de tela "vê"?</h3>
+                        <p>Para o computador, uma imagem é só um conjunto de pixels. Leitores de tela como NVDA, JAWS e VoiceOver não conseguem interpretar sozinhos o que ela mostra: eles dependem de um texto alternativo escrito por quem fez o site.</p>
+                        <p>Sem o atributo <code>alt</code>, muitos leitores anunciam o nome do arquivo (ex.: "IMG_5502.jpg"), o que não ajuda em nada. O texto alternativo deve transmitir a mesma informação ou função que a imagem passa visualmente.</p>
+                        <div class="note">
+                            <p class="note__label">Dica</p>
+                            <p>Se a imagem for só decorativa, use <code>alt=""</code> (vazio, mas presente). Assim o leitor de tela a ignora. Nunca omita o atributo: sem ele, o leitor pode ler o nome do arquivo.</p>
+                        </div>
                     </div>
-                </div>
-                <div class="card-demo">
-                    <figure class="code-example code-example--wrong">
-                        <figcaption><span aria-hidden="true">❌</span> Errado</figcaption>
+
+                    <div class="lab">
+                        <div class="lab__part">
+                            <h4 class="lab__title">Código</h4>
+                            <div class="snippets">
+                                <figure class="snippet snippet--wrong">
+                                    <figcaption><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M4 4l8 8M12 4l-8 8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"></path></svg> Errado</figcaption>
 <pre><code>&lt;img src="IMG_5502.jpg"&gt;</code></pre>
-                    </figure>
-                    <figure class="code-example code-example--right">
-                        <figcaption><span aria-hidden="true">✅</span> Certo</figcaption>
+                                </figure>
+                                <figure class="snippet snippet--right">
+                                    <figcaption><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3 8.5l3.2 3.2L13 4.8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg> Certo</figcaption>
 <pre><code>&lt;img src="vendas.jpg"
      <mark>alt="Gráfico: as vendas subiram 20% de 2024 para 2025"</mark>&gt;</code></pre>
-                    </figure>
+                                </figure>
+                            </div>
+                        </div>
 
-                    <div class="live-preview">
-                        <h4 class="preview-title">Teste na prática</h4>
-                        <div class="chart-demo">
-                            <svg width="90" height="70" viewBox="0 0 90 70" role="img" aria-label="Gráfico: as vendas subiram 20% de 2024 para 2025">
-                                <rect x="10" y="25" width="25" height="40" fill="currentColor" opacity="0.5"></rect>
-                                <rect x="50" y="15" width="25" height="50" fill="currentColor"></rect>
-                                <line x1="5" y1="65" x2="85" y2="65" stroke="currentColor" stroke-width="2"></line>
-                            </svg>
-                            <p>Ouça como o leitor de tela anunciaria esta imagem com e sem o <code>alt</code>:</p>
-                        </div>
-                        <div class="demo-actions">
-                            <button type="button" class="demo-button demo-button--wrong" data-output="sr-111" data-message="IMG_5502.jpg, imagem">Sem alt</button>
-                            <button type="button" class="demo-button" data-output="sr-111" data-message="Gráfico: as vendas subiram 20% de 2024 para 2025, imagem">Com alt</button>
-                        </div>
-                        <div class="sr-output">
-                            <span class="sr-output__label"><span aria-hidden="true">🔈</span> Leitor de tela (simulação)</span>
-                            <p class="sr-output__text" id="sr-111" role="status"></p>
+                        <div class="lab__part">
+                            <h4 class="lab__title">Teste</h4>
+                            <div class="demo">
+                                <div class="chart-figure">
+                                    <svg width="96" height="72" viewBox="0 0 96 72" role="img" aria-label="Gráfico: as vendas subiram 20% de 2024 para 2025">
+                                        <rect x="14" y="28" width="26" height="36" fill="currentColor" opacity="0.45"></rect>
+                                        <rect x="54" y="14" width="26" height="50" fill="currentColor"></rect>
+                                        <line x1="6" y1="64" x2="90" y2="64" stroke="currentColor" stroke-width="2"></line>
+                                    </svg>
+                                    <p>Ouça como o leitor de tela anunciaria esta imagem sem e com o <code>alt</code>.</p>
+                                </div>
+                                <div class="choice">
+                                    <button type="button" class="button button--wrong" data-output="sr-111" data-tag="Sem alt" data-message="IMG_5502.jpg, imagem">Sem alt</button>
+                                    <button type="button" class="button button--right" data-output="sr-111" data-tag="Com alt" data-message="Gráfico: as vendas subiram 20% de 2024 para 2025, imagem">Com alt</button>
+                                </div>
+                                <div class="speech">
+                                    <p class="speech__bar"><strong>Visualizador de fala</strong> <span>simulação do NVDA</span></p>
+                                    <div class="speech__log" id="sr-111" role="log" aria-label="Falas simuladas do leitor de tela">
+                                        <p class="speech__empty">Escolha uma opção acima.</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- 1.3.1 INFORMAÇÕES E RELAÇÕES -->
-        <section id="criterio-131" aria-labelledby="titulo-131">
-            <h2 id="titulo-131"><span class="criterion-number">Critério 1.3.1</span> Informações e relações</h2>
-            <div class="guideline-card">
-                <div class="card-content">
-                    <p class="wcag-tag">Princípio: Perceptível · Nível A</p>
-                    <h3>Tabelas que fazem sentido sem enxergar</h3>
-                    <p>Quem enxerga bate o olho na tabela e entende que "R$ 150" pertence à coluna "Preço". O leitor de tela lê célula por célula, então essa relação precisa estar <span class="enfase">no código</span>, e não só no visual.</p>
-                    <p>Quando a tabela usa <code>&lt;th&gt;</code> nos cabeçalhos (com <code>scope="col"</code> ou <code>scope="row"</code>), o leitor anuncia automaticamente o cabeçalho ao mudar de coluna ou de linha. Se os cabeçalhos forem só <code>&lt;td&gt;</code> em negrito, ou forem escondidos com <code>aria-hidden</code>, essa ligação se perde e o usuário ouve apenas valores soltos.</p>
-                    <div class="explanation-box">
-                        <p>O critério 1.3.1 vale para qualquer estrutura visual, não só tabelas: títulos devem usar <code>&lt;h1&gt;</code> a <code>&lt;h6&gt;</code>, listas devem usar <code>&lt;ul&gt;</code> ou <code>&lt;ol&gt;</code>, e campos agrupados devem usar <code>&lt;fieldset&gt;</code>.</p>
+            <!-- 1.3.1 INFORMAÇÕES E RELAÇÕES -->
+            <section class="criterion" id="criterio-131" aria-labelledby="titulo-131">
+                <header class="criterion__head">
+                    <h2 id="titulo-131"><span class="criterion__num">1.3.1</span> Informações e relações</h2>
+                    <dl class="criterion__meta">
+                        <div><dt>Princípio</dt><dd>Perceptível</dd></div>
+                        <div><dt>Diretriz</dt><dd>1.3 Adaptável</dd></div>
+                        <div><dt class="visually-hidden">Nível</dt><dd><span class="level">A</span></dd></div>
+                    </dl>
+                </header>
+                <div class="criterion__body">
+                    <div class="criterion__text">
+                        <h3>Tabelas que fazem sentido sem enxergar</h3>
+                        <p>Quem enxerga bate o olho na tabela e entende que "R$ 150" pertence à coluna "Preço". O leitor de tela lê célula por célula, então essa relação precisa estar no código, e não só no visual.</p>
+                        <p>Quando a tabela usa <code>&lt;th&gt;</code> nos cabeçalhos (com <code>scope="col"</code> ou <code>scope="row"</code>), o leitor anuncia o cabeçalho sozinho ao mudar de coluna ou de linha. Se os cabeçalhos forem só <code>&lt;td&gt;</code> em negrito, ou forem escondidos com <code>aria-hidden</code>, essa ligação se perde e o usuário ouve apenas valores soltos.</p>
+                        <div class="note">
+                            <p class="note__label">Vai além das tabelas</p>
+                            <p>O critério vale para qualquer estrutura visual: títulos devem usar <code>&lt;h1&gt;</code> a <code>&lt;h6&gt;</code>, listas devem usar <code>&lt;ul&gt;</code> ou <code>&lt;ol&gt;</code>, e campos agrupados devem usar <code>&lt;fieldset&gt;</code>.</p>
+                        </div>
                     </div>
-                </div>
-                <div class="card-demo">
-                    <figure class="code-example code-example--wrong">
-                        <figcaption><span aria-hidden="true">❌</span> Errado</figcaption>
+
+                    <div class="lab">
+                        <div class="lab__part">
+                            <h4 class="lab__title">Código</h4>
+                            <div class="snippets">
+                                <figure class="snippet snippet--wrong">
+                                    <figcaption><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M4 4l8 8M12 4l-8 8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"></path></svg> Errado</figcaption>
 <pre><code>&lt;tr&gt;
   &lt;td&gt;&lt;b&gt;Produto&lt;/b&gt;&lt;/td&gt;
   &lt;td&gt;&lt;b&gt;Preço&lt;/b&gt;&lt;/td&gt;
 &lt;/tr&gt;</code></pre>
-                    </figure>
-                    <figure class="code-example code-example--right">
-                        <figcaption><span aria-hidden="true">✅</span> Certo</figcaption>
+                                </figure>
+                                <figure class="snippet snippet--right">
+                                    <figcaption><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3 8.5l3.2 3.2L13 4.8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg> Certo</figcaption>
 <pre><code><mark>&lt;caption&gt;</mark>Preços da loja<mark>&lt;/caption&gt;</mark>
 &lt;tr&gt;
   <mark>&lt;th scope="col"&gt;</mark>Produto&lt;/th&gt;
   <mark>&lt;th scope="col"&gt;</mark>Preço&lt;/th&gt;
 &lt;/tr&gt;
 &lt;tr&gt;&lt;td&gt;Mouse gamer&lt;/td&gt;&lt;td&gt;R$ 150&lt;/td&gt;&lt;/tr&gt;</code></pre>
-                    </figure>
-
-                    <div class="live-preview">
-                        <h4 class="preview-title">Teste na prática</h4>
-                        <table class="demo-table">
-                            <caption>Preços da loja</caption>
-                            <thead>
-                                <tr>
-                                    <th scope="col">Produto</th>
-                                    <th scope="col">Preço</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Mouse gamer</td>
-                                    <td>R$ 150</td>
-                                </tr>
-                                <tr>
-                                    <td>Teclado</td>
-                                    <td>R$ 200</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <p>Simule a navegação até a célula "R$ 150" (no NVDA, com <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>→</kbd>):</p>
-                        <div class="demo-actions">
-                            <button type="button" class="demo-button demo-button--wrong" data-output="sr-131" data-message="R$ 150">Cabeçalhos sem &lt;th&gt;</button>
-                            <button type="button" class="demo-button" data-output="sr-131" data-message="Preço, coluna 2, R$ 150">Cabeçalhos com &lt;th&gt;</button>
+                                </figure>
+                            </div>
                         </div>
-                        <div class="sr-output">
-                            <span class="sr-output__label"><span aria-hidden="true">🔈</span> Leitor de tela (simulação)</span>
-                            <p class="sr-output__text" id="sr-131" role="status"></p>
+
+                        <div class="lab__part">
+                            <h4 class="lab__title">Teste</h4>
+                            <div class="demo">
+                                <div class="table-wrap">
+                                    <table class="demo-table">
+                                        <caption>Preços da loja</caption>
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Produto</th>
+                                                <th scope="col">Preço</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Mouse gamer</td>
+                                                <td>R$ 150</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Teclado</td>
+                                                <td>R$ 200</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <p>Simule a ida até a célula "R$ 150" (no NVDA, <kbd>Ctrl</kbd> <kbd>Alt</kbd> <kbd>→</kbd>).</p>
+                                <div class="choice">
+                                    <button type="button" class="button button--wrong" data-output="sr-131" data-tag="Sem th" data-message="R$ 150">Cabeçalhos sem &lt;th&gt;</button>
+                                    <button type="button" class="button button--right" data-output="sr-131" data-tag="Com th" data-message="Preço, coluna 2, R$ 150">Cabeçalhos com &lt;th&gt;</button>
+                                </div>
+                                <div class="speech">
+                                    <p class="speech__bar"><strong>Visualizador de fala</strong> <span>simulação do NVDA</span></p>
+                                    <div class="speech__log" id="sr-131" role="log" aria-label="Falas simuladas do leitor de tela">
+                                        <p class="speech__empty">Escolha uma opção acima.</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- 2.1.1 TECLADO -->
-        <section id="criterio-211" aria-labelledby="titulo-211">
-            <h2 id="titulo-211"><span class="criterion-number">Critério 2.1.1</span> Teclado</h2>
-            <div class="guideline-card">
-                <div class="card-content">
-                    <p class="wcag-tag">Princípio: Operável · Nível A</p>
-                    <h3>Nem todo mundo usa mouse</h3>
-                    <p>Pessoas cegas, pessoas com deficiência motora e quem usa tecnologias alternativas (acionadores, controle por voz, teclados adaptados) dependem do teclado. A tecla <kbd>Tab</kbd> leva ao próximo elemento interativo, <kbd>Shift</kbd> + <kbd>Tab</kbd> volta, e <kbd>Enter</kbd> ou <kbd>Espaço</kbd> ativa.</p>
-                    <p>Elementos como <code>&lt;div&gt;</code> e <code>&lt;span&gt;</code> não recebem foco do teclado. Um "botão" feito com <code>div</code> e <code>onclick</code> só funciona com o mouse. Use elementos nativos como <code>&lt;button&gt;</code> e <code>&lt;a href&gt;</code>: eles já vêm com foco, são ativados pelo teclado e são anunciados corretamente pelo leitor de tela.</p>
-                </div>
-                <div class="card-demo">
-                    <figure class="code-example code-example--wrong">
-                        <figcaption><span aria-hidden="true">❌</span> Errado</figcaption>
+            <!-- 2.1.1 TECLADO -->
+            <section class="criterion" id="criterio-211" aria-labelledby="titulo-211">
+                <header class="criterion__head">
+                    <h2 id="titulo-211"><span class="criterion__num">2.1.1</span> Teclado</h2>
+                    <dl class="criterion__meta">
+                        <div><dt>Princípio</dt><dd>Operável</dd></div>
+                        <div><dt>Diretriz</dt><dd>2.1 Acessível por teclado</dd></div>
+                        <div><dt class="visually-hidden">Nível</dt><dd><span class="level">A</span></dd></div>
+                    </dl>
+                </header>
+                <div class="criterion__body">
+                    <div class="criterion__text">
+                        <h3>Nem todo mundo usa mouse</h3>
+                        <p>Pessoas cegas, pessoas com deficiência motora e quem usa tecnologias alternativas (acionadores, controle por voz, teclados adaptados) dependem do teclado. <kbd>Tab</kbd> leva ao próximo elemento interativo, <kbd>Shift</kbd> <kbd>Tab</kbd> volta, e <kbd>Enter</kbd> ou <kbd>Espaço</kbd> ativa.</p>
+                        <p>Elementos como <code>&lt;div&gt;</code> e <code>&lt;span&gt;</code> não recebem foco do teclado. Um "botão" feito com <code>div</code> e <code>onclick</code> só funciona com o mouse. Use elementos nativos como <code>&lt;button&gt;</code> e <code>&lt;a href&gt;</code>: eles já vêm com foco, são ativados pelo teclado e são anunciados corretamente pelo leitor de tela.</p>
+                    </div>
+
+                    <div class="lab">
+                        <div class="lab__part">
+                            <h4 class="lab__title">Código</h4>
+                            <div class="snippets">
+                                <figure class="snippet snippet--wrong">
+                                    <figcaption><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M4 4l8 8M12 4l-8 8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"></path></svg> Errado</figcaption>
 <pre><code>&lt;div onclick="salvar()"&gt;Salvar&lt;/div&gt;</code></pre>
-                    </figure>
-                    <figure class="code-example code-example--right">
-                        <figcaption><span aria-hidden="true">✅</span> Certo</figcaption>
-<pre><code><mark>&lt;button type="button"</mark> onclick="salvar()"&gt;Salvar&lt;/button&gt;</code></pre>
-                    </figure>
-
-                    <div class="live-preview">
-                        <h4 class="preview-title">Teste na prática</h4>
-                        <p>Tente chegar aos dois botões usando só a tecla <kbd>Tab</kbd> e ativá-los com <kbd>Enter</kbd>. O primeiro é uma <code>div</code> e o teclado vai pular por cima dele.</p>
-                        <div class="demo-actions">
-                            <div class="fake-button" data-output="msg-211" data-message="A div foi ativada, mas só funciona com o mouse.">Salvar (div)</div>
-                            <button type="button" class="demo-button" data-output="msg-211" data-message="O botão foi ativado! Funciona com mouse, teclado e leitor de tela.">Salvar (button)</button>
+                                </figure>
+                                <figure class="snippet snippet--right">
+                                    <figcaption><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3 8.5l3.2 3.2L13 4.8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg> Certo</figcaption>
+<pre><code><mark>&lt;button type="button"</mark> onclick="salvar()"&gt;Salvar<mark>&lt;/button&gt;</mark></code></pre>
+                                </figure>
+                            </div>
                         </div>
-                        <div class="sr-output">
-                            <span class="sr-output__label">Resultado</span>
-                            <p class="sr-output__text" id="msg-211" role="status"></p>
+
+                        <div class="lab__part">
+                            <h4 class="lab__title">Teste</h4>
+                            <div class="demo">
+                                <p>Tente chegar aos dois botões usando só <kbd>Tab</kbd> e ativá-los com <kbd>Enter</kbd>. O primeiro é uma <code>div</code>: o teclado passa direto por ele.</p>
+                                <div class="choice">
+                                    <div class="fake-button" data-output="msg-211" data-tag="div" data-message="Ativado com o mouse. Pelo teclado, este elemento nem recebe foco.">Salvar (div)</div>
+                                    <button type="button" class="button button--right" data-output="msg-211" data-tag="button" data-message="Ativado! Funciona com mouse, teclado e leitor de tela.">Salvar (button)</button>
+                                </div>
+                                <div class="speech">
+                                    <p class="speech__bar"><strong>Registro de eventos</strong> <span>o que aconteceu</span></p>
+                                    <div class="speech__log" id="msg-211" role="log" aria-label="Registro de eventos">
+                                        <p class="speech__empty">Nenhum botão ativado ainda.</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- 2.4.4 FINALIDADE DO LINK -->
-        <section id="criterio-244" aria-labelledby="titulo-244">
-            <h2 id="titulo-244"><span class="criterion-number">Critério 2.4.4</span> Finalidade do link (em contexto)</h2>
-            <div class="guideline-card">
-                <div class="card-content">
-                    <p class="wcag-tag">Princípio: Operável · Nível A</p>
-                    <h3>Links que dizem para onde levam</h3>
-                    <p>Leitores de tela têm atalhos que listam <span class="enfase">apenas os links</span> da página (no NVDA, <kbd>Insert</kbd> + <kbd>F7</kbd>). Se todos os links forem "Clique aqui", a lista vira "Clique aqui, Clique aqui, Clique aqui" e ninguém sabe para onde cada um leva.</p>
-                    <p>No Nível A, a finalidade do link pode ser entendida pelo texto do link <span class="enfase">junto com o seu contexto</span> (a frase, o parágrafo, o item de lista ou a célula de tabela em que ele está). Mesmo assim, a melhor prática é o próprio texto do link já dizer o destino. Exigir isso sempre é o critério 2.4.9, de Nível AAA.</p>
-                </div>
-                <div class="card-demo">
-                    <figure class="code-example code-example--wrong">
-                        <figcaption><span aria-hidden="true">❌</span> Errado</figcaption>
+            <!-- 2.4.4 FINALIDADE DO LINK -->
+            <section class="criterion" id="criterio-244" aria-labelledby="titulo-244">
+                <header class="criterion__head">
+                    <h2 id="titulo-244"><span class="criterion__num">2.4.4</span> Finalidade do link (em contexto)</h2>
+                    <dl class="criterion__meta">
+                        <div><dt>Princípio</dt><dd>Operável</dd></div>
+                        <div><dt>Diretriz</dt><dd>2.4 Navegável</dd></div>
+                        <div><dt class="visually-hidden">Nível</dt><dd><span class="level">A</span></dd></div>
+                    </dl>
+                </header>
+                <div class="criterion__body">
+                    <div class="criterion__text">
+                        <h3>Links que dizem para onde levam</h3>
+                        <p>Leitores de tela têm atalhos que listam só os links da página (no NVDA, <kbd>Insert</kbd> <kbd>F7</kbd>). Se todos os links forem "Clique aqui", a lista vira "Clique aqui, Clique aqui, Clique aqui" e ninguém sabe para onde cada um leva.</p>
+                        <p>No Nível A, a finalidade do link pode ser entendida pelo texto do link junto com o seu contexto: a frase, o parágrafo, o item de lista ou a célula de tabela em que ele está. Mesmo assim, o melhor é o próprio texto do link já dizer o destino.</p>
+                        <div class="note">
+                            <p class="note__label">Nível acima</p>
+                            <p>Exigir que o texto do link se explique sozinho, sem contexto, é o critério 2.4.9, de Nível <span class="level">AAA</span>.</p>
+                        </div>
+                    </div>
+
+                    <div class="lab">
+                        <div class="lab__part">
+                            <h4 class="lab__title">Código</h4>
+                            <div class="snippets">
+                                <figure class="snippet snippet--wrong">
+                                    <figcaption><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M4 4l8 8M12 4l-8 8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"></path></svg> Errado</figcaption>
 <pre><code>&lt;li&gt;&lt;a href="contrato.pdf"&gt;Clique aqui&lt;/a&gt;&lt;/li&gt;</code></pre>
-                    </figure>
-                    <figure class="code-example code-example--right">
-                        <figcaption><span aria-hidden="true">✅</span> Certo</figcaption>
+                                </figure>
+                                <figure class="snippet snippet--right">
+                                    <figcaption><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3 8.5l3.2 3.2L13 4.8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg> Certo</figcaption>
 <pre><code>&lt;li&gt;&lt;a href="contrato.pdf"&gt;<mark>Baixar contrato (PDF, 200 KB)</mark>&lt;/a&gt;&lt;/li&gt;</code></pre>
-                    </figure>
-
-                    <div class="live-preview">
-                        <h4 class="preview-title">Teste na prática</h4>
-                        <p>Simule a lista de links que o leitor de tela mostra em duas versões da mesma página:</p>
-                        <div class="demo-actions">
-                            <button type="button" class="demo-button demo-button--wrong" data-output="sr-244" data-message="Clique aqui; Clique aqui; Saiba mais; Clique aqui">Página com links vagos</button>
-                            <button type="button" class="demo-button" data-output="sr-244" data-message="Baixar contrato (PDF); Ver tabela de preços; Falar com o suporte; Política de privacidade">Página com links claros</button>
+                                </figure>
+                            </div>
                         </div>
-                        <div class="sr-output">
-                            <span class="sr-output__label"><span aria-hidden="true">🔈</span> Lista de links (simulação)</span>
-                            <p class="sr-output__text" id="sr-244" role="status"></p>
+
+                        <div class="lab__part">
+                            <h4 class="lab__title">Teste</h4>
+                            <div class="demo">
+                                <p>Veja a lista de links que o leitor de tela mostraria em duas versões da mesma página.</p>
+                                <div class="choice">
+                                    <button type="button" class="button button--wrong" data-output="sr-244" data-tag="Vagos" data-message="Clique aqui; Clique aqui; Saiba mais; Clique aqui">Links vagos</button>
+                                    <button type="button" class="button button--right" data-output="sr-244" data-tag="Claros" data-message="Baixar contrato (PDF); Ver tabela de preços; Falar com o suporte; Política de privacidade">Links claros</button>
+                                </div>
+                                <div class="speech">
+                                    <p class="speech__bar"><strong>Lista de links</strong> <span>simulação do NVDA</span></p>
+                                    <div class="speech__log" id="sr-244" role="log" aria-label="Listas de links simuladas">
+                                        <p class="speech__empty">Escolha uma opção acima.</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- 3.3.2 RÓTULOS OU INSTRUÇÕES -->
-        <section id="criterio-332" aria-labelledby="titulo-332">
-            <h2 id="titulo-332"><span class="criterion-number">Critério 3.3.2</span> Rótulos ou instruções</h2>
-            <div class="guideline-card">
-                <div class="card-content">
-                    <p class="wcag-tag">Princípio: Compreensível · Nível A</p>
-                    <h3>Todo campo precisa de um rótulo</h3>
-                    <p>Visualmente, um texto ao lado do campo basta para sabermos o que preencher. Para quem usa leitor de tela, essa proximidade visual não existe: se o rótulo não estiver ligado ao campo no código, o usuário ouve só "Editar, em branco".</p>
-                    <p>O critério 3.3.2 pede rótulos ou instruções sempre que o usuário precisa inserir dados. A forma mais robusta é o <code>&lt;label&gt;</code> com o atributo <code>for</code> apontando para o <code>id</code> do campo (essa ligação também atende aos critérios 1.3.1 e 4.1.2). O <code>placeholder</code> não substitui o rótulo: ele some quando o usuário começa a digitar.</p>
-                    <div class="explanation-box">
-                        <p><span class="enfase">Bônus:</span> o <code>&lt;label&gt;</code> aumenta a área de clique. Clicar no texto do rótulo coloca o foco no campo, o que ajuda quem tem tremores ou usa tela de toque.</p>
+            <!-- 3.3.2 RÓTULOS OU INSTRUÇÕES -->
+            <section class="criterion" id="criterio-332" aria-labelledby="titulo-332">
+                <header class="criterion__head">
+                    <h2 id="titulo-332"><span class="criterion__num">3.3.2</span> Rótulos ou instruções</h2>
+                    <dl class="criterion__meta">
+                        <div><dt>Princípio</dt><dd>Compreensível</dd></div>
+                        <div><dt>Diretriz</dt><dd>3.3 Assistência de entrada</dd></div>
+                        <div><dt class="visually-hidden">Nível</dt><dd><span class="level">A</span></dd></div>
+                    </dl>
+                </header>
+                <div class="criterion__body">
+                    <div class="criterion__text">
+                        <h3>Todo campo precisa de um rótulo</h3>
+                        <p>Visualmente, um texto ao lado do campo basta para sabermos o que preencher. Para quem usa leitor de tela, essa proximidade não existe: se o rótulo não estiver ligado ao campo no código, o usuário ouve só "Editar, em branco".</p>
+                        <p>O critério pede rótulos ou instruções sempre que o usuário precisa inserir dados. A forma mais robusta é o <code>&lt;label&gt;</code> com o atributo <code>for</code> apontando para o <code>id</code> do campo, ligação que também atende aos critérios 1.3.1 e 4.1.2. O <code>placeholder</code> não substitui o rótulo, porque some quando o usuário começa a digitar.</p>
+                        <div class="note">
+                            <p class="note__label">Bônus</p>
+                            <p>O <code>&lt;label&gt;</code> aumenta a área de clique. Clicar no texto do rótulo coloca o foco no campo, o que ajuda quem tem tremores ou usa tela de toque.</p>
+                        </div>
                     </div>
-                </div>
-                <div class="card-demo">
-                    <figure class="code-example code-example--wrong">
-                        <figcaption><span aria-hidden="true">❌</span> Errado</figcaption>
+
+                    <div class="lab">
+                        <div class="lab__part">
+                            <h4 class="lab__title">Código</h4>
+                            <div class="snippets">
+                                <figure class="snippet snippet--wrong">
+                                    <figcaption><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M4 4l8 8M12 4l-8 8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"></path></svg> Errado</figcaption>
 <pre><code>E-mail: &lt;input type="email" placeholder="E-mail"&gt;</code></pre>
-                    </figure>
-                    <figure class="code-example code-example--right">
-                        <figcaption><span aria-hidden="true">✅</span> Certo</figcaption>
+                                </figure>
+                                <figure class="snippet snippet--right">
+                                    <figcaption><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3 8.5l3.2 3.2L13 4.8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg> Certo</figcaption>
 <pre><code>&lt;label <mark>for="email"</mark>&gt;E-mail&lt;/label&gt;
 &lt;input <mark>id="email"</mark> type="email" autocomplete="email"&gt;</code></pre>
-                    </figure>
+                                </figure>
+                            </div>
+                        </div>
 
-                    <div class="live-preview form-demo">
-                        <h4 class="preview-title">Teste na prática</h4>
-                        <p>Clique na palavra "E-mail": o foco vai para o campo.</p>
-                        <label for="email-demo">E-mail</label>
-                        <p class="hint" id="email-demo-dica">Exemplo: nome@exemplo.com</p>
-                        <input type="email" id="email-demo" autocomplete="email" aria-describedby="email-demo-dica">
+                        <div class="lab__part">
+                            <h4 class="lab__title">Teste</h4>
+                            <div class="demo field">
+                                <p>Clique na palavra "E-mail": o foco vai para o campo.</p>
+                                <div>
+                                    <label for="email-demo">E-mail</label>
+                                    <p class="field__hint" id="email-demo-dica">Exemplo: nome@exemplo.com</p>
+                                    <input type="email" id="email-demo" autocomplete="email" aria-describedby="email-demo-dica">
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- 4.1.2 NOME, FUNÇÃO, VALOR -->
-        <section id="criterio-412" aria-labelledby="titulo-412">
-            <h2 id="titulo-412"><span class="criterion-number">Critério 4.1.2</span> Nome, função, valor</h2>
-            <div class="guideline-card">
-                <div class="card-content">
-                    <p class="wcag-tag">Princípio: Robusto · Nível A</p>
-                    <h3>Dando nome a botões só com ícone</h3>
-                    <p>Ícones (lixeira, lupa, ×) economizam espaço, mas não têm texto. Se o botão tem só um SVG sem nome, o leitor anuncia apenas "botão" e o usuário não sabe o que ele faz.</p>
-                    <p>O critério 4.1.2 exige que todo componente de interface exponha para a tecnologia assistiva o seu <span class="enfase">nome</span> (o que é), a sua <span class="enfase">função</span> (botão, link, caixa de seleção…) e o seu <span class="enfase">estado ou valor</span> (marcado, expandido…). O <code>&lt;button&gt;</code> já fornece a função; o <code>aria-label</code> fornece o nome que falta. O ícone recebe <code>aria-hidden="true"</code> para não ser lido à toa.</p>
-                    <div class="explanation-box">
-                        <p><span class="enfase">Primeira regra da ARIA:</span> se existe um elemento HTML nativo que faz o que você precisa, use-o. A ARIA complementa o HTML, não o substitui. E nunca use <code>aria-hidden="true"</code> em algo que recebe foco: o usuário de teclado chega nele, mas o leitor de tela fica mudo.</p>
+            <!-- 4.1.2 NOME, FUNÇÃO, VALOR -->
+            <section class="criterion" id="criterio-412" aria-labelledby="titulo-412">
+                <header class="criterion__head">
+                    <h2 id="titulo-412"><span class="criterion__num">4.1.2</span> Nome, função, valor</h2>
+                    <dl class="criterion__meta">
+                        <div><dt>Princípio</dt><dd>Robusto</dd></div>
+                        <div><dt>Diretriz</dt><dd>4.1 Compatível</dd></div>
+                        <div><dt class="visually-hidden">Nível</dt><dd><span class="level">A</span></dd></div>
+                    </dl>
+                </header>
+                <div class="criterion__body">
+                    <div class="criterion__text">
+                        <h3>Dando nome a botões só com ícone</h3>
+                        <p>Ícones como lixeira, lupa e × economizam espaço, mas não têm texto. Se o botão tem só um SVG sem nome, o leitor anuncia apenas "botão" e o usuário não sabe o que ele faz.</p>
+                        <p>O critério exige que todo componente de interface informe à tecnologia assistiva o seu nome (o que é), a sua função (botão, link, caixa de seleção) e o seu estado ou valor (marcado, expandido). O <code>&lt;button&gt;</code> já fornece a função; o <code>aria-label</code> fornece o nome que falta. O ícone recebe <code>aria-hidden="true"</code> para não ser lido à toa.</p>
+                        <div class="note">
+                            <p class="note__label">Primeira regra da ARIA</p>
+                            <p>Se existe um elemento HTML nativo que faz o que você precisa, use-o. A ARIA complementa o HTML, não o substitui. E nunca use <code>aria-hidden="true"</code> em algo que recebe foco: o usuário de teclado chega nele, mas o leitor de tela fica mudo.</p>
+                        </div>
                     </div>
-                </div>
-                <div class="card-demo">
-                    <figure class="code-example code-example--wrong">
-                        <figcaption><span aria-hidden="true">❌</span> Errado</figcaption>
+
+                    <div class="lab">
+                        <div class="lab__part">
+                            <h4 class="lab__title">Código</h4>
+                            <div class="snippets">
+                                <figure class="snippet snippet--wrong">
+                                    <figcaption><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M4 4l8 8M12 4l-8 8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"></path></svg> Errado</figcaption>
 <pre><code>&lt;button&gt;&lt;svg&gt;…&lt;/svg&gt;&lt;/button&gt;</code></pre>
-                    </figure>
-                    <figure class="code-example code-example--right">
-                        <figcaption><span aria-hidden="true">✅</span> Certo</figcaption>
+                                </figure>
+                                <figure class="snippet snippet--right">
+                                    <figcaption><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3 8.5l3.2 3.2L13 4.8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg> Certo</figcaption>
 <pre><code>&lt;button <mark>aria-label="Excluir relatorio.pdf"</mark>&gt;
   &lt;svg <mark>aria-hidden="true"</mark> focusable="false"&gt;…&lt;/svg&gt;
 &lt;/button&gt;</code></pre>
-                    </figure>
+                                </figure>
+                            </div>
+                        </div>
 
-                    <div class="live-preview">
-                        <h4 class="preview-title">Teste na prática</h4>
-                        <div class="file-item">
-                            <span>relatorio.pdf</span>
-                            <button type="button" class="icon-button" aria-label="Excluir relatorio.pdf" data-output="sr-412" data-message="relatorio.pdf excluído (simulação: nada foi apagado de verdade).">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false">
-                                    <polyline points="3 6 5 6 21 6"></polyline>
-                                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-                                </svg>
-                            </button>
-                        </div>
-                        <p>Compare o que o leitor de tela anuncia ao chegar no botão da lixeira:</p>
-                        <div class="demo-actions">
-                            <button type="button" class="demo-button demo-button--wrong" data-output="sr-412" data-message="botão">Sem aria-label</button>
-                            <button type="button" class="demo-button" data-output="sr-412" data-message="Excluir relatorio.pdf, botão">Com aria-label</button>
-                        </div>
-                        <div class="sr-output">
-                            <span class="sr-output__label"><span aria-hidden="true">🔈</span> Leitor de tela (simulação)</span>
-                            <p class="sr-output__text" id="sr-412" role="status"></p>
+                        <div class="lab__part">
+                            <h4 class="lab__title">Teste</h4>
+                            <div class="demo">
+                                <div class="file-row">
+                                    <span>relatorio.pdf</span>
+                                    <button type="button" class="icon-button" aria-label="Excluir relatorio.pdf" data-output="sr-412" data-tag="Clique" data-message="relatorio.pdf excluído (simulação: nada foi apagado).">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                            <path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m3 0v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <p>Compare o que o leitor de tela anuncia ao chegar no botão da lixeira.</p>
+                                <div class="choice">
+                                    <button type="button" class="button button--wrong" data-output="sr-412" data-tag="Sem nome" data-message="botão">Sem aria-label</button>
+                                    <button type="button" class="button button--right" data-output="sr-412" data-tag="Com nome" data-message="Excluir relatorio.pdf, botão">Com aria-label</button>
+                                </div>
+                                <div class="speech">
+                                    <p class="speech__bar"><strong>Visualizador de fala</strong> <span>simulação do NVDA</span></p>
+                                    <div class="speech__log" id="sr-412" role="log" aria-label="Falas simuladas do leitor de tela">
+                                        <p class="speech__empty">Escolha uma opção acima.</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-    </main>
+        </main>
+    </div>
 
     <footer class="site-footer">
-        <p>&copy; 2025 TCC: Guia Prático de Acessibilidade Web · IFBA Campus Valença</p>
-        <small>
-            Este site foi construído buscando atender aos critérios de Nível A da WCAG 2.1.
-            Leia a norma completa em <a href="https://www.w3.org/TR/WCAG21/" lang="en">Web Content Accessibility Guidelines (WCAG) 2.1</a>.
-        </small>
+        <div class="site-footer__inner">
+            <div>
+                <h2>Sobre o projeto</h2>
+                <p>Trabalho de Conclusão de Curso do Técnico Integrado em Informática do IFBA, Campus Valença (2025).</p>
+                <p>Sávio Santos Rocha, Gabriel de Jesus dos Santos, Luiza Helena dos Santos Muniz, Maria Fernanda Souza de Oliveira Silva e Wallipe Santos de Jesus. Orientação: Prof. Addson Costa.</p>
+                <p><a href="tcc-original-2025/index.html">Ver a versão original apresentada na banca</a></p>
+            </div>
+            <div>
+                <h2>Sobre este site</h2>
+                <p>Este site busca atender aos critérios de Nível A da WCAG 2.1. A norma completa está em <a href="https://www.w3.org/TR/WCAG21/" lang="en">Web Content Accessibility Guidelines (WCAG) 2.1</a>, no site do W3C.</p>
+                <p>O texto usa a fonte Atkinson Hyperlegible, criada pelo Braille Institute para facilitar a leitura de pessoas com baixa visão.</p>
+            </div>
+        </div>
     </footer>
 
     <script src="js/main.js"></script>
